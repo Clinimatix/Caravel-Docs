@@ -3,7 +3,7 @@
     "id": "dev",
     "label": "Development",
     "candidate": "26.1.0-rc1",
-    "commit": "ef62cd3c72268126293a8dc788fae203878e655a",
+    "commit": "faa6d1b212570eb8f10e10c642aad0beb7a1c36f",
     "released": false,
     "navigation": [
       {
@@ -317,6 +317,7 @@
           }
         ]
       }
-    ]
+    ],
+    "nugetPublished": true
   }
 ]
