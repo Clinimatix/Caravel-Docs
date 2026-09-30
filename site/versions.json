@@ -1,0 +1,322 @@
+[
+  {
+    "id": "dev",
+    "label": "Development",
+    "candidate": "26.1.0-rc1",
+    "commit": "ef62cd3c72268126293a8dc788fae203878e655a",
+    "released": false,
+    "navigation": [
+      {
+        "text": "Start here",
+        "items": [
+          {
+            "slug": "overview",
+            "title": "Overview"
+          },
+          {
+            "slug": "getting-started",
+            "title": "Getting started"
+          },
+          {
+            "slug": "index",
+            "title": "All guides"
+          }
+        ]
+      },
+      {
+        "text": "Application foundation",
+        "items": [
+          {
+            "slug": "configuration",
+            "title": "Configuration"
+          },
+          {
+            "slug": "development",
+            "title": "Development sessions"
+          },
+          {
+            "slug": "hosting",
+            "title": "Hosting"
+          }
+        ]
+      },
+      {
+        "text": "Data with Clarion",
+        "items": [
+          {
+            "slug": "clarion",
+            "title": "Models and queries"
+          },
+          {
+            "slug": "database-providers",
+            "title": "Database providers"
+          },
+          {
+            "slug": "bosun-data",
+            "title": "Migrations and seeders"
+          }
+        ]
+      },
+      {
+        "text": "Authentication",
+        "items": [
+          {
+            "slug": "authentication",
+            "title": "Local accounts"
+          },
+          {
+            "slug": "oidc-authentication",
+            "title": "OpenID Connect"
+          },
+          {
+            "slug": "service-authentication",
+            "title": "Bearer-token APIs"
+          },
+          {
+            "slug": "windows-authentication",
+            "title": "Windows authentication"
+          }
+        ]
+      },
+      {
+        "text": "Application services",
+        "items": [
+          {
+            "slug": "events",
+            "title": "Events"
+          },
+          {
+            "slug": "queues",
+            "title": "Queues and workers"
+          },
+          {
+            "slug": "mail",
+            "title": "Mail"
+          },
+          {
+            "slug": "notifications",
+            "title": "Mail and SMS notifications"
+          },
+          {
+            "slug": "scheduling",
+            "title": "Scheduling"
+          },
+          {
+            "slug": "storage",
+            "title": "Local storage"
+          },
+          {
+            "slug": "caching",
+            "title": "Caching"
+          },
+          {
+            "slug": "observability",
+            "title": "Observability"
+          }
+        ]
+      },
+      {
+        "text": "Tools and examples",
+        "items": [
+          {
+            "slug": "bosun-services",
+            "title": "Service generators"
+          },
+          {
+            "slug": "backend-sample",
+            "title": "Backend walkthrough"
+          }
+        ]
+      },
+      {
+        "text": "Project reference",
+        "items": [
+          {
+            "slug": "roadmap",
+            "title": "Design and roadmap"
+          },
+          {
+            "slug": "release-policy",
+            "title": "Versions and releases"
+          },
+          {
+            "slug": "testing",
+            "title": "Testing"
+          },
+          {
+            "slug": "changelog",
+            "title": "Changelog"
+          },
+          {
+            "slug": "contributing",
+            "title": "Contributing"
+          },
+          {
+            "slug": "security",
+            "title": "Security"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "26.1.0-rc1",
+    "label": "26.1.0-rc1",
+    "candidate": "26.1.0-rc1",
+    "commit": "87096bf79d042448e8878b8ad67a3d05af3263da",
+    "released": true,
+    "navigation": [
+      {
+        "text": "Start here",
+        "items": [
+          {
+            "slug": "overview",
+            "title": "Overview"
+          },
+          {
+            "slug": "getting-started",
+            "title": "Getting started"
+          },
+          {
+            "slug": "index",
+            "title": "All guides"
+          }
+        ]
+      },
+      {
+        "text": "Application foundation",
+        "items": [
+          {
+            "slug": "configuration",
+            "title": "Configuration"
+          },
+          {
+            "slug": "development",
+            "title": "Development sessions"
+          },
+          {
+            "slug": "hosting",
+            "title": "Hosting"
+          }
+        ]
+      },
+      {
+        "text": "Data with Clarion",
+        "items": [
+          {
+            "slug": "clarion",
+            "title": "Models and queries"
+          },
+          {
+            "slug": "database-providers",
+            "title": "Database providers"
+          },
+          {
+            "slug": "bosun-data",
+            "title": "Migrations and seeders"
+          }
+        ]
+      },
+      {
+        "text": "Authentication",
+        "items": [
+          {
+            "slug": "authentication",
+            "title": "Local accounts"
+          },
+          {
+            "slug": "oidc-authentication",
+            "title": "OpenID Connect"
+          },
+          {
+            "slug": "service-authentication",
+            "title": "Bearer-token APIs"
+          },
+          {
+            "slug": "windows-authentication",
+            "title": "Windows authentication"
+          }
+        ]
+      },
+      {
+        "text": "Application services",
+        "items": [
+          {
+            "slug": "events",
+            "title": "Events"
+          },
+          {
+            "slug": "queues",
+            "title": "Queues and workers"
+          },
+          {
+            "slug": "mail",
+            "title": "Mail"
+          },
+          {
+            "slug": "notifications",
+            "title": "Mail and SMS notifications"
+          },
+          {
+            "slug": "scheduling",
+            "title": "Scheduling"
+          },
+          {
+            "slug": "storage",
+            "title": "Local storage"
+          },
+          {
+            "slug": "caching",
+            "title": "Caching"
+          },
+          {
+            "slug": "observability",
+            "title": "Observability"
+          }
+        ]
+      },
+      {
+        "text": "Tools and examples",
+        "items": [
+          {
+            "slug": "bosun-services",
+            "title": "Service generators"
+          },
+          {
+            "slug": "backend-sample",
+            "title": "Backend walkthrough"
+          }
+        ]
+      },
+      {
+        "text": "Project reference",
+        "items": [
+          {
+            "slug": "roadmap",
+            "title": "Design and roadmap"
+          },
+          {
+            "slug": "release-policy",
+            "title": "Versions and releases"
+          },
+          {
+            "slug": "testing",
+            "title": "Testing"
+          },
+          {
+            "slug": "changelog",
+            "title": "Changelog"
+          },
+          {
+            "slug": "contributing",
+            "title": "Contributing"
+          },
+          {
+            "slug": "security",
+            "title": "Security"
+          }
+        ]
+      }
+    ]
+  }
+]

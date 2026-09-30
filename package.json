@@ -1,0 +1,13 @@
+{
+  "name": "caravel-documentation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev site --host 127.0.0.1",
+    "build": "vitepress build site",
+    "preview": "vitepress preview site --host 127.0.0.1",
+    "sync": "node scripts/sync.mjs",
+    "test": "node --test scripts/sync.test.mjs"
+  },
+  "devDependencies": { "vitepress": "1.6.4" }
+}
