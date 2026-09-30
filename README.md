@@ -49,7 +49,7 @@ This example identifies the published RC1 release. If its snapshot is already pr
 
 Keep one snapshot per published package version, including milestone and RC versions. A patch release gets a new snapshot; the previous version and its navigation remain accessible. The selector preserves the current topic when it exists in the chosen version, otherwise it opens that version's overview. Search within a snapshot is restricted to that version; the documentation homepage searches all versions. Development docs remain clearly labeled as unreleased.
 
-Correct typos or package-availability instructions in a published snapshot through a reviewed docs-only change. For availability corrections, retain the original manifest commit and record the reviewed correction commit in the page’s `availabilityCorrection` frontmatter; do not import newer API behavior into older docs. Make API corrections in the framework and document the version where behavior changed. Test two-version navigation whenever changing the selector or adding the first release.
+Correct typos or package-availability instructions in a published snapshot through a reviewed docs-only change. For availability corrections, retain the original manifest commit and record the reviewed correction commit in the page’s `availabilityCorrection` or `statusCorrection` frontmatter; do not import newer API behavior into older docs. Make API corrections in the framework and document the version where behavior changed. Test two-version navigation whenever changing the selector or adding the first release.
 
 ## Publishing
 
@@ -64,3 +64,9 @@ For guide/API changes, open a pull request in [Clinimatix/Caravel](https://githu
 ## License
 
 The documentation and site code use the [MIT license](LICENSE). Clinimatix names and logos are trademarks and are not licensed for unrelated branding. Fonts retain their included licenses.
+
+## Documentation freshness
+
+Every build runs `npm run check:content`. It checks current guides against the release manifest for obsolete pre-RC statements, unavailable-package claims after verified NuGet publication, and mismatched package-install versions. Set `nugetPublished` on a release entry only after checking the published packages. These focused checks catch known drift patterns; they cannot establish that arbitrary prose or examples match implementation.
+
+At release time, review status and installation pages against the actual tag, GitHub release and NuGet feed. Periodically compare changed APIs, CLI schema, samples, package inventory and provider tests with the guides, then check remaining topics on a rotating basis. Compile/run relevant synthetic examples when behavior changes. Keep source corrections in the framework repository and import a reviewed commit; label historical snapshot corrections without changing their API contracts.

@@ -23,9 +23,9 @@ function changeVersion(event) {
         <p class="custom-block-title">NuGet installation update</p>
         <p>These RC1 packages are now available on nuget.org. Installation guidance reflects a <a :href="`https://github.com/Clinimatix/Caravel/commit/${frontmatter.availabilityCorrection}`">reviewed documentation correction</a>; the release version, API behavior and package payloads are unchanged.</p>
       </div>
-      <div v-if="current?.candidate === '26.1.0-rc1' && slug === 'roadmap'" class="custom-block info">
-        <p class="custom-block-title">Public Preview 1 is available</p>
-        <p>The “Before a release candidate” section in this source snapshot records the RC entry criteria. <a href="https://github.com/Clinimatix/Caravel/releases/tag/v26.1.0-rc1">26.1.0-rc1 is now available as Public Preview 1</a>; work toward stable focuses on feedback, fixes and upgrade validation.</p>
+      <div v-if="frontmatter.statusCorrection" class="custom-block info">
+        <p class="custom-block-title">Release status update</p>
+        <p>This page includes a <a :href="`https://github.com/Clinimatix/Caravel/commit/${frontmatter.statusCorrection}`">reviewed correction</a> reflecting Public Preview 1 publication. Its release scope and API contracts are unchanged.</p>
       </div>
     </template>
     <template #doc-footer-before>
