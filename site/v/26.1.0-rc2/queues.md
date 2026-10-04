@@ -7,7 +7,7 @@ sourcePath: docs/QUEUES.md
 
 Use a database queue when work must survive an application restart. The caller saves a small, typed job; a worker claims it, runs its handler and records the outcome. Failed jobs retry with a delay. Jobs that use up their attempts stay in the database for inspection and deliberate replay.
 
-`Clinimatix.Caravel.Queues` works with any .NET host and EF Core; it doesn't need the Caravel web host or Clarion. You choose the database, connection and migrations. It's tested on SQL Server, PostgreSQL and SQLite (see [database providers](/v/dev/database-providers)).
+`Clinimatix.Caravel.Queues` works with any .NET host and EF Core; it doesn't need the Caravel web host or Clarion. You choose the database, connection and migrations. It's tested on SQL Server, PostgreSQL and SQLite (see [database providers](/v/26.1.0-rc2/database-providers)).
 
 ## Set up a worker
 
@@ -145,11 +145,11 @@ Infrastructure integrations that claim jobs directly can call `RenewAsync(lease)
 
 **Clocks.** Leases use the worker's UTC clock, so keep clocks in sync across machines.
 
-**Infrastructure failures**, such as the database going away while claiming or acknowledging, are passed to the host, which stops by default. See [hosting](/v/dev/hosting#run-a-durable-worker) for how to handle this.
+**Infrastructure failures**, such as the database going away while claiming or acknowledging, are passed to the host, which stops by default. See [hosting](/v/26.1.0-rc2/hosting#run-a-durable-worker) for how to handle this.
 
 **Retention.** Completed and dead-lettered jobs stay in the table, and their idempotency keys stay reserved. Nothing is deleted automatically. If you clean up old rows, remember that you also lose duplicate protection for them. Before removing a handler for an old job name, make sure no jobs with that name are left.
 
-The queue also publishes metrics and tracing through standard .NET diagnostics; see [observability](/v/dev/observability).
+The queue also publishes metrics and tracing through standard .NET diagnostics; see [observability](/v/26.1.0-rc2/observability).
 
 ## Save application data and a job together
 
@@ -202,7 +202,7 @@ The outbox guarantees atomic **application change plus dispatch intent**, follow
 
 ## Further queue capabilities
 
-This driver covers durable enqueue, delayed work, scoped execution, renewable leases, retries, replay and transactional dispatch through an application outbox. In-memory and synchronous drivers, message-broker adapters, batches, chains and debouncing remain on the [roadmap](/v/dev/roadmap).
+This driver covers durable enqueue, delayed work, scoped execution, renewable leases, retries, replay and transactional dispatch through an application outbox. In-memory and synchronous drivers, message-broker adapters, batches, chains and debouncing remain on the [roadmap](/v/26.1.0-rc2/roadmap).
 
 ## Try the runnable worker sample
 
@@ -226,7 +226,7 @@ dotnet run --project samples/Caravel.Worker -- --report
 
 The final JSON report is `{"events":3,"total":6}`. Repeating the demo enqueue after completion returns the original jobs and leaves that report unchanged. `--work-once` processes at most one job and reports whether it claimed one. `--check-model` checks that both contexts have no pending model changes or unapplied migrations.
 
-Use `--queue-status` to inspect persisted queue counts without processing jobs. It reports ready and delayed jobs, active and expired leases, dead letters and completions. It opens the database read-only. See [observability](/v/dev/observability#inspect-persisted-queue-counts) for details.
+Use `--queue-status` to inspect persisted queue counts without processing jobs. It reports ready and delayed jobs, active and expired leases, dead letters and completions. It opens the database read-only. See [observability](/v/26.1.0-rc2/observability#inspect-persisted-queue-counts) for details.
 
 For a continuously running worker, use the same migrated scratch directory and run:
 

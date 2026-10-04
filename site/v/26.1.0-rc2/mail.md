@@ -70,7 +70,7 @@ Capture performs the same message validation, stores defensive snapshots and mak
 
 ## Queue delivery
 
-Configure the [database queue](/v/dev/queues), its schema and a mail sender, then register mail jobs:
+Configure the [database queue](/v/26.1.0-rc2/queues), its schema and a mail sender, then register mail jobs:
 
 ```csharp
 services.AddCaravelQueuedMail();

@@ -7,7 +7,7 @@ sourcePath: docs/OIDC-AUTHENTICATION.md
 
 Use OpenID Connect (OIDC) when people should sign in to your Caravel web app with an account they already have, such as a Microsoft Entra ID, Okta or Auth0 account. The identity provider handles passwords and sign-in policies; your app checks the result and starts its own secure browser session.
 
-You don't need a Caravel package for this. ASP.NET Core's `AddCookie` and `AddOpenIdConnect` already do the work, and the [Caravel.Oidc sample](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/samples/Caravel.Oidc/Program.cs) shows a careful, locked-down setup for an administration site. If your API receives access tokens instead of browser sign-ins, see [service authentication](/v/dev/service-authentication).
+You don't need a Caravel package for this. ASP.NET Core's `AddCookie` and `AddOpenIdConnect` already do the work, and the [Caravel.Oidc sample](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/samples/Caravel.Oidc/Program.cs) shows a careful, locked-down setup for an administration site. If your API receives access tokens instead of browser sign-ins, see [service authentication](/v/26.1.0-rc2/service-authentication).
 
 ## Run the sample with your provider
 
@@ -68,7 +68,7 @@ This signs you out of **the app only**. The provider session is still active, so
 
 ## Before you deploy
 
-- Configure persistent, protected [Data Protection keys](/v/dev/hosting#keep-users-signed-in-across-deployments).
+- Configure persistent, protected [Data Protection keys](/v/26.1.0-rc2/hosting#keep-users-signed-in-across-deployments).
 - Configure HTTPS and any reverse proxy's forwarded headers.
 - Review redirect URIs, client secret rotation, claim and role mapping, and the session lifetime with your provider.
 - Try sign-in end to end with your real provider and browsers. The automated tests use a simulated provider.

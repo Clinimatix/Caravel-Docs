@@ -5,7 +5,7 @@ sourcePath: docs/STORAGE.md
 
 # Local storage disks
 
-`Clinimatix.Caravel.Storage` gives your app named storage disks that stream files instead of loading them into memory. This guide covers the local filesystem driver. The RC2 candidate also provides an optional [Azure Blob adapter](/v/dev/azure-storage); S3 remains on the [roadmap](/v/dev/roadmap).
+`Clinimatix.Caravel.Storage` gives your app named storage disks that stream files instead of loading them into memory. This guide covers the local filesystem driver. The RC2 candidate also provides an optional [Azure Blob adapter](/v/26.1.0-rc2/azure-storage); S3 remains on the [roadmap](/v/26.1.0-rc2/roadmap).
 
 ## Register a disk
 

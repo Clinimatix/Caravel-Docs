@@ -7,9 +7,9 @@ sourcePath: docs/BACKEND-SAMPLE.md
 
 The Identity sample shows the main pieces of a Caravel backend working together: sign-in, an authenticated API, a durable queue and per-user reports. Its data model is deliberately tiny. Users submit counter events, each adding a quantity from 1 to 1000, which keeps the interesting parts in view: retries, duplicates, crashes and ownership.
 
-The sample lives in `samples/Caravel.Identity`, alongside the notes and account endpoints described in the [authentication guide](/v/dev/authentication). It uses local Identity cookies; each signed-in user owns their own events.
+The sample lives in `samples/Caravel.Identity`, alongside the notes and account endpoints described in the [authentication guide](/v/26.1.0-rc2/authentication). It uses local Identity cookies; each signed-in user owns their own events.
 
-It also includes [a workspace-scoped command application](/v/dev/authorized-commands) with a browser form, current membership checks, version conflicts, retry receipts and reference-only background notices.
+It also includes [a workspace-scoped command application](/v/26.1.0-rc2/authorized-commands) with a browser form, current membership checks, version conflicts, retry receipts and reference-only background notices.
 
 ## Prepare the two database contexts
 
@@ -26,9 +26,9 @@ dotnet ef database update --project samples/Caravel.Identity --context QueueDbCo
 
 `IdentityContext` holds users, notes, counter results and the work-item application's membership, history, receipts and outbox. `QueueDbContext` holds the queue in the same file, with its own `__CaravelQueueMigrations` history table. Neither creates its schema when the app starts. The included migrations are for SQLite; other databases need their own.
 
-The sample also accepts `Caravel:DatabaseProvider` set to `sqlserver` or `postgres`. For those providers, `Caravel:IdentityDatabase` is a connection string instead of a file path. Generate and review provider-specific migrations for both contexts in your own application; do not apply the included SQLite migrations to a server database. The [packaged backend tests](/v/dev/testing#test-against-sql-server-and-postgresql) demonstrate this using disposable copies and databases.
+The sample also accepts `Caravel:DatabaseProvider` set to `sqlserver` or `postgres`. For those providers, `Caravel:IdentityDatabase` is a connection string instead of a file path. Generate and review provider-specific migrations for both contexts in your own application; do not apply the included SQLite migrations to a server database. The [packaged backend tests](/v/26.1.0-rc2/testing#test-against-sql-server-and-postgresql) demonstrate this using disposable copies and databases.
 
-Follow [the authentication guide](/v/dev/authentication#try-the-sample) to create a demo user. There are no built-in credentials, and registration is disabled by default. The same guide explains how to opt into registration, confirmation email and MFA.
+Follow [the authentication guide](/v/26.1.0-rc2/authentication#try-the-sample) to create a demo user. There are no built-in credentials, and registration is disabled by default. The same guide explains how to opt into registration, confirmation email and MFA.
 
 To run this demo with its queue worker enabled:
 
@@ -105,7 +105,7 @@ Two paths use [ASP.NET Core health checks](https://learn.microsoft.com/en-us/asp
 
 Responses are just `Healthy` (200) or `Unhealthy` (503), with no error details. Readiness opens the database read-only, reads at most one row from each required table, and times out after five seconds. It never creates the database or schema, so a missing or incomplete schema shows up as `Unhealthy`.
 
-Only these two paths skip the rate limiters, so restrict access to them as your monitoring setup allows. A ready web app doesn't prove that the worker is running or that the queue is keeping up; watch [queue metrics](/v/dev/observability) for that.
+Only these two paths skip the rate limiters, so restrict access to them as your monitoring setup allows. A ready web app doesn't prove that the worker is running or that the queue is keeping up; watch [queue metrics](/v/26.1.0-rc2/observability) for that.
 
 ## What the tests cover
 

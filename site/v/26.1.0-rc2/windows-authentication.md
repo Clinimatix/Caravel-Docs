@@ -11,7 +11,7 @@ The package works on its own, without local Identity or Clarion. It doesn't crea
 
 ## Add it to an app
 
-Reference `Clinimatix.Caravel.Auth.Windows` (until it's on NuGet, see [using prerelease packages](/v/dev/release-policy#using-prerelease-packages)), then register it:
+Reference `Clinimatix.Caravel.Auth.Windows` (until it's on NuGet, see [using prerelease packages](/v/26.1.0-rc2/release-policy#using-prerelease-packages)), then register it:
 
 ```csharp
 using System.Security.Claims;

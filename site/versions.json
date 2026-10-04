@@ -1,10 +1,10 @@
 [
   {
-    "id": "dev",
-    "label": "Development",
-    "candidate": "26.1.0-rc1",
-    "commit": "faa6d1b212570eb8f10e10c642aad0beb7a1c36f",
-    "released": false,
+    "id": "26.1.0-rc2",
+    "label": "26.1.0-rc2",
+    "candidate": "26.1.0-rc2",
+    "commit": "1b5bb346db4a9e6bc9ed7116ea485d561d59f391",
+    "released": true,
     "navigation": [
       {
         "text": "Start here",
@@ -16,6 +16,10 @@
           {
             "slug": "getting-started",
             "title": "Getting started"
+          },
+          {
+            "slug": "upgrading",
+            "title": "Upgrading"
           },
           {
             "slug": "index",
@@ -106,6 +110,10 @@
             "title": "Local storage"
           },
           {
+            "slug": "azure-storage",
+            "title": "Azure Blob storage"
+          },
+          {
             "slug": "caching",
             "title": "Caching"
           },
@@ -125,6 +133,183 @@
           {
             "slug": "backend-sample",
             "title": "Backend walkthrough"
+          },
+          {
+            "slug": "authorized-commands",
+            "title": "Authorized commands"
+          }
+        ]
+      },
+      {
+        "text": "Project reference",
+        "items": [
+          {
+            "slug": "roadmap",
+            "title": "Design and roadmap"
+          },
+          {
+            "slug": "release-policy",
+            "title": "Versions and releases"
+          },
+          {
+            "slug": "testing",
+            "title": "Testing"
+          },
+          {
+            "slug": "changelog",
+            "title": "Changelog"
+          },
+          {
+            "slug": "contributing",
+            "title": "Contributing"
+          },
+          {
+            "slug": "security",
+            "title": "Security"
+          }
+        ]
+      }
+    ],
+    "nugetPublished": true
+  },
+  {
+    "id": "dev",
+    "label": "Development",
+    "candidate": "26.1.0-rc2",
+    "commit": "1b5bb346db4a9e6bc9ed7116ea485d561d59f391",
+    "released": false,
+    "navigation": [
+      {
+        "text": "Start here",
+        "items": [
+          {
+            "slug": "overview",
+            "title": "Overview"
+          },
+          {
+            "slug": "getting-started",
+            "title": "Getting started"
+          },
+          {
+            "slug": "upgrading",
+            "title": "Upgrading"
+          },
+          {
+            "slug": "index",
+            "title": "All guides"
+          }
+        ]
+      },
+      {
+        "text": "Application foundation",
+        "items": [
+          {
+            "slug": "configuration",
+            "title": "Configuration"
+          },
+          {
+            "slug": "development",
+            "title": "Development sessions"
+          },
+          {
+            "slug": "hosting",
+            "title": "Hosting"
+          }
+        ]
+      },
+      {
+        "text": "Data with Clarion",
+        "items": [
+          {
+            "slug": "clarion",
+            "title": "Models and queries"
+          },
+          {
+            "slug": "database-providers",
+            "title": "Database providers"
+          },
+          {
+            "slug": "bosun-data",
+            "title": "Migrations and seeders"
+          }
+        ]
+      },
+      {
+        "text": "Authentication",
+        "items": [
+          {
+            "slug": "authentication",
+            "title": "Local accounts"
+          },
+          {
+            "slug": "oidc-authentication",
+            "title": "OpenID Connect"
+          },
+          {
+            "slug": "service-authentication",
+            "title": "Bearer-token APIs"
+          },
+          {
+            "slug": "windows-authentication",
+            "title": "Windows authentication"
+          }
+        ]
+      },
+      {
+        "text": "Application services",
+        "items": [
+          {
+            "slug": "events",
+            "title": "Events"
+          },
+          {
+            "slug": "queues",
+            "title": "Queues and workers"
+          },
+          {
+            "slug": "mail",
+            "title": "Mail"
+          },
+          {
+            "slug": "notifications",
+            "title": "Mail and SMS notifications"
+          },
+          {
+            "slug": "scheduling",
+            "title": "Scheduling"
+          },
+          {
+            "slug": "storage",
+            "title": "Local storage"
+          },
+          {
+            "slug": "azure-storage",
+            "title": "Azure Blob storage"
+          },
+          {
+            "slug": "caching",
+            "title": "Caching"
+          },
+          {
+            "slug": "observability",
+            "title": "Observability"
+          }
+        ]
+      },
+      {
+        "text": "Tools and examples",
+        "items": [
+          {
+            "slug": "bosun-services",
+            "title": "Service generators"
+          },
+          {
+            "slug": "backend-sample",
+            "title": "Backend walkthrough"
+          },
+          {
+            "slug": "authorized-commands",
+            "title": "Authorized commands"
           }
         ]
       },

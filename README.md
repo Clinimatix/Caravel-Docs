@@ -40,12 +40,12 @@ The importer reads only the public document allowlist from Git, not uncommitted 
 After a framework version has actually been published and its tag fetched:
 
 ```sh
-npm run sync -- <framework-checkout> v26.1.0-rc1 26.1.0-rc1
+npm run sync -- <framework-checkout> v<version> <version>
 npm test
 npm run build
 ```
 
-This example identifies the published RC1 release. If its snapshot is already present, the importer refuses to replace it. The command requires the tag's commit and the framework's package version to match. It creates a new folder, adds the version to navigation and refuses to replace an existing release. It does not create tags, publish packages or deploy a website.
+Replace `<version>` with the exact published version, such as `26.1.0-rc1`. If its snapshot is already present, the importer refuses to replace it. The command requires the tag's commit and the framework's package version to match. It creates a new folder and adds the version to navigation. It does not create tags, publish packages or deploy a website.
 
 Keep one snapshot per published package version, including milestone and RC versions. A patch release gets a new snapshot; the previous version and its navigation remain accessible. The selector preserves the current topic when it exists in the chosen version, otherwise it opens that version's overview. Search within a snapshot is restricted to that version; the documentation homepage searches all versions. Development docs remain clearly labeled as unreleased.
 

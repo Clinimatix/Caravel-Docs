@@ -42,7 +42,7 @@ Everything lives in this repository and shares one version number, but each pack
 | `Clinimatix.Caravel.Mail` | MailKit, Queues | SMTP, message templates, attachments, development capture and queued delivery. |
 | `Clinimatix.Caravel.Notifications` | Mail, Microsoft.Extensions.Http | Replaceable mail/SMS channels, capture and an optional Twilio HTTP adapter. |
 
-New packages are added when there's real integration work to do. Caching, for example, is a [recipe over .NET's own services](/v/dev/caching) until a Caravel package would add something useful.
+New packages are added when there's real integration work to do. Caching, for example, is a [recipe over .NET's own services](/v/26.1.0-rc2/caching) until a Caravel package would add something useful.
 
 ## Where things stand
 
@@ -56,7 +56,7 @@ This guide targets **`26.1.0-rc2`**, extending the RC1 foundation with the compo
 | **M3: Developer experience** | `caravel dev`, starter kits, generators, testing helpers, Windows Service and IIS helpers, optional Aspire support | In progress |
 | **M4: AI-native Caravel** | Microsoft.Extensions.AI integration, embeddings, structured output, MCP server support, agent tooling and search | Planned |
 
-Architecture milestones (M0–M4) are separate from release version suffixes: `26.1.0-m1` identifies the first milestone candidate for the 26.1 family, not "milestone 1 only". See the [release policy](/v/dev/release-policy) for versioning.
+Architecture milestones (M0–M4) are separate from release version suffixes: `26.1.0-m1` identifies the first milestone candidate for the 26.1 family, not "milestone 1 only". See the [release policy](/v/26.1.0-rc2/release-policy) for versioning.
 
 ### Available today
 
@@ -75,7 +75,7 @@ These capabilities form the 26.1 release scope. The later work listed below can 
 
 The RC2 candidate includes an optional Bosun `--stack identity` profile: editable local Identity, workspace-scoped commands, durable receipts/outbox and the browser form. It extends the existing samples and is not part of the immutable RC1 tool. Complete account screens and other identity/frontend integrations remain planned.
 
-An optional [Azure Blob adapter](/v/dev/azure-storage) supplies create-only streaming, native ETag/range/version parameters and a download authorization recipe. Local emulator and transport checks do not qualify cloud identity, scanning or retention. This package is also separate from published RC1.
+An optional [Azure Blob adapter](/v/26.1.0-rc2/azure-storage) supplies create-only streaming, native ETag/range/version parameters and a download authorization recipe. Local emulator and transport checks do not qualify cloud identity, scanning or retention. This package is also separate from published RC1.
 
 ### Coming next
 
@@ -83,17 +83,17 @@ An optional [Azure Blob adapter](/v/dev/azure-storage) supplies create-only stre
 - **Scheduling:** calendar and time-zone-aware schedules (cron-style)
 - **Storage:** S3 and separately qualified cloud deployment/retention recipes
 - **Queues:** in-memory and synchronous drivers, batches and chains
-- **Mail and notifications:** additional mail/SMS providers, in-app inboxes, browser/mobile push, chat channels, delivery receipts and recipient preferences; see [channel plans and current limits](/v/dev/notifications#later-channel-work)
+- **Mail and notifications:** additional mail/SMS providers, in-app inboxes, browser/mobile push, chat channels, delivery receipts and recipient preferences; see [channel plans and current limits](/v/26.1.0-rc2/notifications#later-channel-work)
 - **Starter kits:** Blazor and React, richer account screens and external-identity profiles
 - **Deployment helpers:** Windows Service and IIS publishing, and optional Aspire integration
-- **Databases:** MariaDB/MySQL, once an EF Core 10–compatible provider is available (see [database providers](/v/dev/database-providers))
+- **Databases:** MariaDB/MySQL, once an EF Core 10–compatible provider is available (see [database providers](/v/26.1.0-rc2/database-providers))
 - **AI and MCP:** the M4 packages listed above
 
 ### Toward stable 26.1
 
-Release qualification covers the exact release commit, supported platforms and database/provider paths. Deployment and application-specific verification remain separate; see [versions and releases](/v/dev/release-policy).
+Release qualification covers the exact release commit, supported platforms and database/provider paths. Deployment and application-specific verification remain separate; see [versions and releases](/v/26.1.0-rc2/release-policy).
 
-Work toward stable 26.1 focuses on integration feedback, fixes, documentation and upgrade validation. RCs remain public previews, not stable releases or a compatibility commitment. See the [release policy](/v/dev/release-policy) and [changelog](/v/dev/changelog) for status and changes.
+Work toward stable 26.1 focuses on integration feedback, fixes, documentation and upgrade validation. RCs remain public previews, not stable releases or a compatibility commitment. See the [release policy](/v/26.1.0-rc2/release-policy) and [changelog](/v/26.1.0-rc2/changelog) for status and changes.
 
 ## Non-goals
 

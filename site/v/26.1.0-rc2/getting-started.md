@@ -5,11 +5,11 @@ sourcePath: docs/GETTING-STARTED.md
 
 # Getting started with Clinimatix Caravel
 
-This guide covers what happens inside a Caravel web app: how it starts up, how to organize services, and what the framework sets up for you. If you haven't created an app yet, start with the [quick start](/v/dev/overview#quick-start).
+This guide covers what happens inside a Caravel web app: how it starts up, how to organize services, and what the framework sets up for you. If you haven't created an app yet, start with the [quick start](/v/26.1.0-rc2/overview#quick-start).
 
 ## Creating and running an app
 
-This guide targets `26.1.0-rc2`. Install Bosun using a [configured package feed](/v/dev/release-policy#using-prerelease-packages) containing that exact version, or run the `caravel` tool from your selected source checkout with `dotnet run --project src/Caravel.Bosun -- <command>`. The table below uses source references; with the installed tool, omit `--framework-source .` to use packages from your configured feed.
+This guide targets `26.1.0-rc2`. Install Bosun using a [configured package feed](/v/26.1.0-rc2/release-policy#using-prerelease-packages) containing that exact version, or run the `caravel` tool from your selected source checkout with `dotnet run --project src/Caravel.Bosun -- <command>`. The table below uses source references; with the installed tool, omit `--framework-source .` to use packages from your configured feed.
 
 | Command | What it does |
 | --- | --- |
@@ -17,7 +17,7 @@ This guide targets `26.1.0-rc2`. Install Bosun using a [configured package feed]
 | `new MyApi --stack api --framework-source .` | Creates an API starter with request validation, OpenAPI in Development, and a health endpoint. No Razor or frontend toolchain. |
 | `new MyWorkspace --stack identity --framework-source .` | Creates an editable local Identity/workspace application with browser forms, versioned commands, receipts and background notices. Follow its README for explicit schema/account setup. |
 | `serve --project MyApp` | Runs the app. Add `--watch` to restart when files change. |
-| `dev --project MyApp` | Runs the app with file watching. Add `--worker <project>` to run a background worker alongside it. See [development sessions](/v/dev/development). |
+| `dev --project MyApp` | Runs the app with file watching. Add `--worker <project>` to run a background worker alongside it. See [development sessions](/v/26.1.0-rc2/development). |
 | `route:list --project MyApp` | Lists every route, including ones mapped with plain ASP.NET Core (`MapPost`, Razor pages). Add `--json` for machine-readable output. |
 | `doctor` | Checks your SDK and optional tools. It only reads; it never changes anything. |
 | `schema --json` | Describes all commands, for tools and scripts. |
@@ -26,9 +26,9 @@ For scripts and tools, `schema --json` describes each argument and option: its .
 
 Razor/API starters listen on `https://localhost:7043` and `http://localhost:5043`; the Identity profile uses `https://localhost:7246`. Change `Properties/launchSettings.json` if you run several projects at once. The repository's basic sample app uses ports 7284 and 5284. HTTPS needs a .NET development certificate; if you don't have one, run `dotnet dev-certs https --trust`. Caravel never creates certificates for you.
 
-The API starter comes with `GET /hello`, `POST /api/greetings` (with a validated `name`) and `GET /health/live`, plus an OpenAPI document at `/openapi/v1.json` in Development. These demo endpoints are public and store nothing. When you're ready to add accounts, ownership checks, request limits and a database, the [backend sample](/v/dev/backend-sample) shows how the pieces fit together.
+The API starter comes with `GET /hello`, `POST /api/greetings` (with a validated `name`) and `GET /health/live`, plus an OpenAPI document at `/openapi/v1.json` in Development. These demo endpoints are public and store nothing. When you're ready to add accounts, ownership checks, request limits and a database, the [backend sample](/v/26.1.0-rc2/backend-sample) shows how the pieces fit together.
 
-The optional `identity` stack is included in the `26.1.0-rc2` Bosun candidate; published RC1 does not include it. It bundles SQLite migrations, native provider configuration, current workspace authorization and the [authorized-command browser flow](/v/dev/authorized-commands). Installed-tool generation works without a checkout. Its small UI supports password sign-in/sign-out; finished account/MFA screens and external identity remain separate integrations. No database, account, credential or cloud resource is created by `caravel new`.
+The optional `identity` stack is included in the `26.1.0-rc2` Bosun candidate; published RC1 does not include it. It bundles SQLite migrations, native provider configuration, current workspace authorization and the [authorized-command browser flow](/v/26.1.0-rc2/authorized-commands). Installed-tool generation works without a checkout. Its small UI supports password sign-in/sign-out; finished account/MFA screens and external identity remain separate integrations. No database, account, credential or cloud resource is created by `caravel new`.
 
 ## A typical `Program.cs`
 
@@ -51,7 +51,7 @@ if (await app.ExportCaravelRoutesAsync(args)) return;
 await app.RunAsync();
 ```
 
-- `AddCaravel` loads [configuration](/v/dev/configuration) and registers your service providers.
+- `AddCaravel` loads [configuration](/v/26.1.0-rc2/configuration) and registers your service providers.
 - `UseCaravel` adds the standard middleware (see [HTTP defaults](#http-defaults)).
 - `Routes` is Caravel's routing syntax. It produces ordinary ASP.NET Core endpoints, so you can mix it freely with `app.MapGet`, Razor pages, and anything else.
 - `ExportCaravelRoutesAsync` is what makes `caravel route:list` work. Put it after your routes and before `RunAsync`.
