@@ -36,16 +36,19 @@ New here? Start with the [repository README](/v/dev/overview) and its quick star
 - [Scheduling](/v/dev/scheduling): enqueue recurring work at fixed intervals
 - [Bosun service generators](/v/dev/bosun-services): generate jobs, events and listeners
 - [Local storage](/v/dev/storage): stream files into named storage disks
+- [Azure Blob storage](/v/dev/azure-storage): optional Azure SDK adapter, conditional transfers and authorized downloads
 - [Caching](/v/dev/caching): use .NET's memory and SQL Server caches
 - [Observability](/v/dev/observability): queue metrics, tracing and health checks
 
 ## Putting it together
 
 - [Backend sample](/v/dev/backend-sample): sign-in, durable ingestion and reporting working together
+- [Authorized commands](/v/dev/authorized-commands): workspace access, edit conflicts, retry receipts and background notices in a small browser application
 
 ## About the project
 
 - [Design and roadmap](/v/dev/roadmap): principles, package layout, current status and what's next
+- [Upgrading from RC1](/v/dev/upgrading): exact versions, dependency locks and explicit schema changes
 - [Versions and releases](/v/dev/release-policy): what milestone, release candidate and stable mean
 - [Testing Caravel](/v/dev/testing): build, test and verify changes as a contributor
 - [Changelog](/v/dev/changelog)

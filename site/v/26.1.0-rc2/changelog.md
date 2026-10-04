@@ -7,7 +7,7 @@ sourcePath: CHANGELOG.md
 
 ## 26.1.0-rc2
 
-This release candidate extends RC1 with a composed application path while preserving native ASP.NET Core and EF Core integration. See [upgrading from RC1](/v/dev/upgrading) for exact package pins, explicit schema setup and optional adoption. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [NuGet](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations.
+This release candidate extends RC1 with a composed application path while preserving native ASP.NET Core and EF Core integration. See [upgrading from RC1](/v/26.1.0-rc2/upgrading) for exact package pins, explicit schema setup and optional adoption. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [NuGet](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations.
 
 - Added optional Azure Blob storage with application-supplied clients, create-only streaming, conditional reads/deletes, range support and a revision-pinned download recipe. Core and local storage remain Azure-independent; cloud deployment and version retention are separate qualifications.
 
@@ -79,8 +79,8 @@ The first release candidate brings together the 26.1 application foundation, dat
 
 ### Known limitations
 
-- All 12 RC1 packages are available on [nuget.org](https://www.nuget.org/profiles/Clinimatix), with GitHub release ZIPs retained for local-feed use; see [installation instructions](/v/dev/release-policy#using-prerelease-packages).
-- Not yet included: passkeys, finished account-management screens, calendar/time-zone scheduling, cloud storage drivers, additional notification providers, a Caravel cache API, and the AI/MCP packages. See the [roadmap](/v/dev/roadmap).
+- All 12 RC1 packages are available on [nuget.org](https://www.nuget.org/profiles/Clinimatix), with GitHub release ZIPs retained for local-feed use; see [installation instructions](/v/26.1.0-rc2/release-policy#using-prerelease-packages).
+- Not yet included: passkeys, finished account-management screens, calendar/time-zone scheduling, cloud storage drivers, additional notification providers, a Caravel cache API, and the AI/MCP packages. See the [roadmap](/v/26.1.0-rc2/roadmap).
 - SMTP and SMS adapters have automated protocol tests; provider acceptance does not guarantee recipient delivery. Configure and verify your chosen delivery service before use. SMS delivery is not SMS MFA.
 - MariaDB is waiting on an EF Core 10–compatible provider.
 - Linux and macOS storage requires a filesystem that supports hard links.

@@ -53,7 +53,7 @@ dotnet tool install --global Clinimatix.Caravel.Bosun --version 26.1.0-rc2
 caravel new MyApp
 ```
 
-Enable **Include prerelease** when browsing packages in Visual Studio. Pin exact versions and use locked restore in automation. Follow [upgrading from RC1](/v/dev/upgrading) when updating an existing application. You can also build from source using the [getting started guide](/v/dev/getting-started).
+Enable **Include prerelease** when browsing packages in Visual Studio. Pin exact versions and use locked restore in automation. Follow [upgrading from RC1](/v/26.1.0-rc2/upgrading) when updating an existing application. You can also build from source using the [getting started guide](/v/26.1.0-rc2/getting-started).
 
 ### Using a release ZIP
 

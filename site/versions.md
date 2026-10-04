@@ -18,7 +18,7 @@ import { withBase } from 'vitepress'
 
 ## Public previews
 
-Caravel release candidates are **public previews**. The package version and Git tag retain the `-rcN` suffix; for example, Public Preview 1 is `26.1.0-rc1`. This is the first release candidate, not a stable release. Use previews to evaluate the framework and test integrations, with a rollback plan.
+Caravel release candidates are **public previews**. The package version and Git tag retain the `-rcN` suffix; for example, Public Preview 1 is `26.1.0-rc1`. Each preview has its own source and documentation snapshot. Use previews to evaluate the framework and test integrations ahead of stable release, with a rollback plan.
 
 <a href="/releases/">Browse releases and preview notes →</a>
 

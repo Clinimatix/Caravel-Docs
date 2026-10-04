@@ -17,17 +17,17 @@ Caravel is maintained by Clinimatix, LLC under the [MIT license](https://github.
    - the smallest example that shows the problem
    - what you expected, and what actually happened
    - any error output, with sensitive details removed
-3. If something on the [roadmap](/v/dev/roadmap) doesn't exist yet, that's a feature request rather than a bug, and those are welcome too.
+3. If something on the [roadmap](/v/26.1.0-rc2/roadmap) doesn't exist yet, that's a feature request rather than a bug, and those are welcome too.
 
 **Keep private data out.** Everything you post is public. Leave out personal or customer data, credentials, connection strings, production logs and private source code, and write a small made-up example instead.
 
-**Security issues** go through [SECURITY.md](/v/dev/security), not public issues.
+**Security issues** go through [SECURITY.md](/v/26.1.0-rc2/security), not public issues.
 
 ## Making a change
 
 For a small fix (a typo, a clear bug, a doc correction), just open a pull request. Link the issue if there is one.
 
-For anything bigger, such as a new feature, a public API change, or a new dependency, please open an issue first so we can agree on the approach. The [design and roadmap](/v/dev/roadmap) page explains the principles Caravel follows.
+For anything bigger, such as a new feature, a public API change, or a new dependency, please open an issue first so we can agree on the approach. The [design and roadmap](/v/26.1.0-rc2/roadmap) page explains the principles Caravel follows.
 
 A few guidelines:
 
@@ -48,8 +48,8 @@ dotnet test Caravel.slnx -c Release --no-build --no-restore
 
 SQLite tests always run. SQL Server and PostgreSQL tests are skipped unless you point them at disposable servers or run the Docker-based script.
 
-[Testing Caravel](/v/dev/testing) covers the package and end-to-end scripts, database testing, and which checks to run for different kinds of changes.
+[Testing Caravel](/v/26.1.0-rc2/testing) covers the package and end-to-end scripts, database testing, and which checks to run for different kinds of changes.
 
 ## After you open a pull request
 
-A maintainer will review it. In the description, mention which checks you ran locally and any platforms you couldn't test. Maintainers arrange additional verification checkpoints as needed; every release requires passing cross-platform CI on its exact commit. See [versions and releases](/v/dev/release-policy) for how changes ship.
+A maintainer will review it. In the description, mention which checks you ran locally and any platforms you couldn't test. Maintainers arrange additional verification checkpoints as needed; every release requires passing cross-platform CI on its exact commit. See [versions and releases](/v/26.1.0-rc2/release-policy) for how changes ship.

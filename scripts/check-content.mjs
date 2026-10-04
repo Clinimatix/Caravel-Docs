@@ -20,7 +20,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   for (const version of versions) {
     const published = versions.find(v => v.released && v.id === version.candidate);
     const state = { candidate: version.candidate, released: !!published, nugetPublished: published?.nugetPublished };
-    for (const slug of ['overview', 'getting-started', 'roadmap', 'release-policy', 'changelog', 'bosun-data']) {
+    for (const { slug } of version.navigation.flatMap(group => group.items)) {
       const path = `v/${version.id}/${slug}.md`;
       failures.push(...contentIssues(readFileSync(new URL(path, site), 'utf8'), state).map(issue => `${path}: ${issue}`));
     }

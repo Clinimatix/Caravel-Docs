@@ -43,7 +43,7 @@ app.MapCaravelAccountEndpoints<IdentityUser>("/auth", new AccountEndpointOptions
 });
 ```
 
-`AllowRegistration` defaults to `false`. Opt in only when the app should accept new accounts. The routes work with a user class that has a parameterless constructor, an Identity email store, security stamps, authenticator keys and recovery-code support. Identity's standard EF store supplies those capabilities. Register `IEmailSender<TUser>` to deliver native Identity messages; the sample's [adapter](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/samples/Caravel.Identity/AccountMailSender.cs) connects it to [Caravel Mail](/v/dev/mail). Auth itself has no mail-transport dependency.
+`AllowRegistration` defaults to `false`. Opt in only when the app should accept new accounts. The routes work with a user class that has a parameterless constructor, an Identity email store, security stamps, authenticator keys and recovery-code support. Identity's standard EF store supplies those capabilities. Register `IEmailSender<TUser>` to deliver native Identity messages; the sample's [adapter](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/samples/Caravel.Identity/AccountMailSender.cs) connects it to [Caravel Mail](/v/26.1.0-rc2/mail). Auth itself has no mail-transport dependency.
 
 The two configured URLs are trusted application pages, not API callbacks. They must be absolute HTTPS addresses without credentials, query strings or fragments. Caravel appends `email` and a URL-safe `token`; it never builds these links from the request's Host header. Each page reads those values, obtains an antiforgery token, and posts to the appropriate API route. Build those pages in your application's UI, avoid third-party assets on token-bearing pages, and don't record tokens in analytics or logs.
 
@@ -144,7 +144,7 @@ HTTPS requires your usual .NET development certificate. Demo-user provisioning w
 | `POST /notes/` | Creates a note from JSON `text` |
 | `GET /notes/{id}`, `PUT /notes/{id}` | Reads or updates a note owned by the signed-in user |
 
-The same sample also demonstrates [authenticated ingestion and reporting](/v/dev/backend-sample): accept a counter event, save a durable job, process it safely after a retry, and query only your own results. Its queue uses a separate migration history in the same SQLite file, which is why you apply both migrations above.
+The same sample also demonstrates [authenticated ingestion and reporting](/v/26.1.0-rc2/backend-sample): accept a counter event, save a durable job, process it safely after a retry, and query only your own results. Its queue uses a separate migration history in the same SQLite file, which is why you apply both migrations above.
 
 The sample uses an in-memory mail capture transport and never sends real messages. Registration remains disabled unless `Caravel__Accounts__AllowRegistration=true`. Configure `Caravel__Accounts__ConfirmationPage` and `Caravel__Accounts__PasswordResetPage` for your own UI; their localhost defaults are placeholders, and the sample does not implement account screens. Captured mail is available through the `MailCapture` service to tests, not through a public HTTP inbox.
 
@@ -175,13 +175,13 @@ With the sample's default stamp checks, other sessions and copied old cookies ar
 
 Caravel Auth supplies account APIs, not finished account screens. Passkeys, SMS authentication, external account linking and an administrator-assisted recovery workflow remain outside this implementation. For other ways to sign in, see:
 
-- [OpenID Connect](/v/dev/oidc-authentication), for signing in with an external identity provider such as Microsoft Entra ID
-- [Service authentication](/v/dev/service-authentication), for APIs called with bearer tokens
-- [Windows authentication](/v/dev/windows-authentication), for intranet apps
+- [OpenID Connect](/v/26.1.0-rc2/oidc-authentication), for signing in with an external identity provider such as Microsoft Entra ID
+- [Service authentication](/v/26.1.0-rc2/service-authentication), for APIs called with bearer tokens
+- [Windows authentication](/v/26.1.0-rc2/windows-authentication), for intranet apps
 
 ## Before you deploy
 
-- Configure persistent, protected [Data Protection keys](/v/dev/hosting#keep-users-signed-in-across-deployments) so sign-ins survive restarts.
+- Configure persistent, protected [Data Protection keys](/v/26.1.0-rc2/hosting#keep-users-signed-in-across-deployments) so sign-ins survive restarts.
 - Configure HTTPS and any reverse proxy's forwarded headers.
 - Set rate limits that fit your users. The sample's limits are deliberately small.
 - Check ownership on writes as well as reads. A query filter hides data, but it doesn't authorize changes.
