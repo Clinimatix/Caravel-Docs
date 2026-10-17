@@ -6,7 +6,7 @@ export function contentIssues(markdown, { released, nugetPublished, candidate })
   const issues = [];
   if (released && /first release candidate will come|before a release candidate|until the packages are published/i.test(markdown))
     issues.push('Published release described as future work');
-  if (nugetPublished && /not on nuget\.org|aren.t on nuget\.org|not through nuget\.org|before nuget\.org distribution/i.test(markdown))
+  if (nugetPublished && /not on nuget\.org|aren.t on nuget\.org|not through nuget\.org|before nuget\.org distribution|until it.s on nuget/i.test(markdown))
     issues.push('Published NuGet packages described as unavailable');
   for (const match of markdown.matchAll(/dotnet (?:tool install|add package)[^\n]*Clinimatix\.Caravel\.[^\n]*--version\s+(\d{2}\.\d+\.\d+(?:-(?:rc|m)\d+)?)/g))
     if (match[1] !== candidate) issues.push(`Install version ${match[1]} differs from ${candidate}`);
