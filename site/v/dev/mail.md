@@ -92,4 +92,4 @@ SMTP acceptance is not proof of inbox delivery. A failed connection after accept
 
 Transport failures throw `MailDeliveryException` with a redacted message and no server-response inner exception. Cancellation remains `OperationCanceledException`. No credentials, message bodies or server diagnostics are logged by this package. Use your provider's delivery records when investigating delivery beyond SMTP acceptance.
 
-Native Identity confirmation/reset endpoints can use a normal `IEmailSender<TUser>` adapter around `IMailSender`; the [Identity sample](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/samples/Caravel.Identity/) demonstrates this composition. Mail does not depend on ASP.NET Core or require a particular account UI.
+Native Identity confirmation/reset endpoints can use a normal `IEmailSender<TUser>` adapter around `IMailSender`; the [Identity sample](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/samples/Caravel.Identity/) demonstrates this composition. Mail does not depend on ASP.NET Core or require a particular account UI.
