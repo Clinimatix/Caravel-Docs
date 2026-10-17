@@ -50,6 +50,7 @@ New here? Start with the [repository README](/v/dev/overview) and its quick star
 - [Design and roadmap](/v/dev/roadmap): principles, package layout, current status and what's next
 - [Upgrading from RC1](/v/dev/upgrading): exact versions, dependency locks and explicit schema changes
 - [Versions and releases](/v/dev/release-policy): what milestone, release candidate and stable mean
+- [Dependency maintenance](/v/dev/dependency-maintenance): assess advisories, review package updates and qualify supported-line fixes
 - [Testing Caravel](/v/dev/testing): build, test and verify changes as a contributor
 - [Changelog](/v/dev/changelog)
 - [Contributing](/v/dev/contributing) and [security](/v/dev/security)

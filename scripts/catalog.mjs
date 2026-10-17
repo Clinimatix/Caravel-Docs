@@ -5,6 +5,6 @@ export const groups = [
   ['Authentication', [['authentication', 'Local accounts'], ['oidc-authentication', 'OpenID Connect'], ['service-authentication', 'Bearer-token APIs'], ['windows-authentication', 'Windows authentication']]],
   ['Application services', [['events', 'Events'], ['queues', 'Queues and workers'], ['mail', 'Mail'], ['notifications', 'Mail and SMS notifications'], ['scheduling', 'Scheduling'], ['storage', 'Local storage'], ['azure-storage', 'Azure Blob storage'], ['caching', 'Caching'], ['observability', 'Observability']]],
   ['Tools and examples', [['bosun-services', 'Service generators'], ['backend-sample', 'Backend walkthrough'], ['authorized-commands', 'Authorized commands']]],
-  ['Project reference', [['roadmap', 'Design and roadmap'], ['release-policy', 'Versions and releases'], ['testing', 'Testing'], ['changelog', 'Changelog', 'CHANGELOG.md'], ['contributing', 'Contributing', 'CONTRIBUTING.md'], ['security', 'Security', 'SECURITY.md']]]
+  ['Project reference', [['roadmap', 'Design and roadmap'], ['release-policy', 'Versions and releases'], ['dependency-maintenance', 'Dependency maintenance'], ['testing', 'Testing'], ['changelog', 'Changelog', 'CHANGELOG.md'], ['contributing', 'Contributing', 'CONTRIBUTING.md'], ['security', 'Security', 'SECURITY.md']]]
 ];
 export const pages = groups.flatMap(([, items]) => items.map(([slug, title, source]) => ({ slug, title, source: source ?? `docs/${slug.toUpperCase()}.md` })));

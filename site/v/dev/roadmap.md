@@ -20,7 +20,7 @@ Caravel targets Windows, Linux and macOS, with platform-specific packages where 
 - **Batteries included, batteries replaceable.** Every capability ships as an optional package. Take what you need and replace the rest.
 - **No surprise dependencies.** Caravel prefers permissively licensed dependencies and platform components. It doesn't require commercial license keys, MediatR or AI credentials.
 - **Safe by default.** Destructive commands require `--force`, `caravel doctor` only reads, secrets stay out of logs and generated files, and nothing creates databases or runs migrations behind your back.
-- **Latest .NET LTS.** Caravel targets the newest generally available long-term-support release of .NET (currently .NET 10 and C# 14). It moves to the next LTS when that version ships.
+- **Latest .NET LTS.** New feature release families target the newest generally available long-term-support release of .NET (currently .NET 10 and C# 14). Maintenance patches and backports preserve the supported family's baseline; moving its minimum platform requires a new feature family.
 
 ## How the packages fit together
 
@@ -46,7 +46,7 @@ New packages are added when there's real integration work to do. Caching, for ex
 
 ## Where things stand
 
-This guide targets **`26.1.0-rc2`**, extending the RC1 foundation with the composed application path described below. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [NuGet](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations. Broader development is organized into architecture milestones:
+This guide targets **`26.1.1-rc2`**, extending the RC1 foundation with the composed application path described below. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [NuGet](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations. Broader development is organized into architecture milestones:
 
 | Milestone | Focus | Status |
 | --- | --- | --- |
@@ -94,6 +94,8 @@ An optional [Azure Blob adapter](/v/dev/azure-storage) supplies create-only stre
 Release qualification covers the exact release commit, supported platforms and database/provider paths. Deployment and application-specific verification remain separate; see [versions and releases](/v/dev/release-policy).
 
 Work toward stable 26.1 focuses on integration feedback, fixes, documentation and upgrade validation. RCs remain public previews, not stable releases or a compatibility commitment. See the [release policy](/v/dev/release-policy) and [changelog](/v/dev/changelog) for status and changes.
+
+Compatible maintenance stays on the current candidate scope: `26.1.1-rc2` is a patch for published `26.1.0-rc2`, not an RC3 feature candidate. A later approved scope advances the RC suffix while carrying forward the numeric patch floor, and stable must not sort below the published candidates. No later scope or release date is implied by the maintenance version.
 
 ## Non-goals
 
