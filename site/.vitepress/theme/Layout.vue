@@ -25,7 +25,7 @@ function changeVersion(event) {
       </div>
       <div v-if="frontmatter.statusCorrection" class="custom-block info">
         <p class="custom-block-title">Release status update</p>
-        <p>This page includes a <a :href="`https://github.com/Clinimatix/Caravel/commit/${frontmatter.statusCorrection}`">reviewed correction</a> reflecting Public Preview 1 publication. Its release scope and API contracts are unchanged.</p>
+        <p>This page includes a <a :href="`https://github.com/Clinimatix/Caravel/commit/${frontmatter.statusCorrection}`">reviewed correction</a> reflecting package publication. Its release scope and API contracts are unchanged.</p>
       </div>
     </template>
     <template #doc-footer-before>
