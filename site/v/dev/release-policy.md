@@ -14,10 +14,14 @@ Caravel uses calendar versions in the form **`YY.Release.Patch`**, with compact 
 | Stage | Example version | Git tag | What it means |
 | --- | --- | --- | --- |
 | Milestone | `26.1.0-m1`, `26.1.0-m2` | `v26.1.0-m1` | A usable, tested slice. APIs may still change, and changes come with migration notes. |
-| Release candidate | `26.1.0-rc1` | `v26.1.0-rc1` | The scope and APIs are settled. Remaining work is bug fixes, upgrade testing and documentation. |
-| Stable | `26.1.0` | `v26.1.0` | A compatibility commitment for the documented API within the 26.1 release family. |
+| Release candidate | `26.1.0-rc2`, `26.1.1-rc2` | `v26.1.1-rc2` | A defined candidate scope with settled APIs; compatible maintenance keeps its RC suffix. |
+| Stable | `26.1.1` | `v26.1.1` | A compatibility commitment for the documented API within the 26.1 release family. |
 
-The first release family begun in 2026 is **Caravel 26.1**. Its first stable package is `26.1.0`; compatible bug fixes become `26.1.1`, `26.1.2` and so on. The next feature release is `26.2.0`. The second component counts release families, not months, and implies no fixed release schedule. Use the full package version in install instructions, bug reports and tags.
+The first release family begun in 2026 is **Caravel 26.1**. `Release` counts families, not months, and `Patch` is the last numeric component. Compatible bug and security fixes increment Patch within the current line. The next feature release family is `26.2.0`; the calendar implies no fixed release schedule. Use the full package version in install instructions, bug reports and tags.
+
+For the published `26.1.0-rc2` candidate, the first compatible maintenance version is `26.1.1-rc2`, followed by `26.1.2-rc2` if another patch is needed. The RC suffix identifies the candidate scope and does not advance for maintenance alone. A new, deliberately approved candidate scope advances that suffix, carrying forward the numeric patch floor: after `26.1.1-rc2`, a later candidate can be `26.1.1-rc3`. New scope and any feature additions require their own review and qualification; they are not maintenance patches.
+
+Stable removes the prerelease suffix at a numeric version no lower than the highest published patch in that candidate line. After `26.1.1-rc2`, stable can be `26.1.1`, with later compatible fixes at `26.1.2` and above. Do not publish `26.1.0-rc3` or `26.1.0` as its successor: NuGet sorts both below `26.1.1-rc2`. If RC2 reaches `26.1.2-rc2` first, the later candidate and stable floor become `26.1.2-rc3` and `26.1.2`. Check actual NuGet ordering before choosing every successor; examples select neither a release date nor future feature scope.
 
 Compatibility is promised within each stable release family. Moving from `26.1` to `26.2` is a deliberate upgrade: breaking changes are allowed when justified and must have migration guidance. Patch releases preserve documented APIs and minimum platform requirements. This is calendar versioning with NuGet-compatible syntax, not a claim of Semantic Versioning compatibility rules. Review migration notes when moving between families; do not assume every `26.*` package is interchangeable.
 
@@ -35,7 +39,7 @@ A few details worth knowing:
 
 **Milestone.** The supported APIs and known gaps are listed in the changelog. The build, tests and package checks pass on the supported platforms. Missing features are fine. Broken or unsafe features described as ready are not.
 
-**Release candidate.** The planned APIs have settled and been verified together in the framework's own sample applications, using the supported databases and hosts. Install, upgrade and recovery have been tested, known limitations are documented and critical issues are resolved. If a breaking change turns out to be necessary, the next build goes back to being a milestone.
+**Release candidate.** The APIs for that approved candidate scope have settled and been verified together in the framework's own sample applications, using the supported databases and hosts. Compatible patches preserve that scope; an approved scope advance needs a new candidate and complete qualification. Install, upgrade and recovery have been tested, known limitations are documented and critical issues are resolved. If a breaking change turns out to be necessary, the next build goes back to being a milestone.
 
 **Stable.** The documented API is stable, the install and upgrade path is repeatable, the framework has been proven in real applications, and maintainers are ready to honor compatibility within the release family. Optional packages added later can carry their own maturity notes.
 
@@ -43,13 +47,13 @@ Every release requires a fresh, passing CI run on its exact commit.
 
 ## Using prerelease packages
 
-This guide targets **`26.1.0-rc2`**. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [nuget.org](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations. Use a configured feed containing the exact version you select. RC1's immutable packages omit the RC2 Identity starter and Azure adapter.
+The current published RC2 maintenance version is **`26.1.1-rc2`**. The earlier **`26.1.0-rc2`** release remains available and immutable. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [nuget.org](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations. Use a configured feed containing the exact version you select. RC1's immutable packages omit the RC2 Identity starter and Azure adapter.
 
 With a configured feed containing RC2, install libraries into an existing project or install Bosun to create an application:
 
 ```powershell
-dotnet add package Clinimatix.Caravel.AspNetCore --version 26.1.0-rc2
-dotnet tool install --global Clinimatix.Caravel.Bosun --version 26.1.0-rc2
+dotnet add package Clinimatix.Caravel.AspNetCore --version 26.1.1-rc2
+dotnet tool install --global Clinimatix.Caravel.Bosun --version 26.1.1-rc2
 caravel new MyApp
 ```
 
@@ -75,8 +79,8 @@ Enable **Include prerelease** when browsing packages in Visual Studio. Pin exact
 3. From that application's directory, install the selected version:
 
    ```powershell
-   dotnet add package Clinimatix.Caravel.AspNetCore --version 26.1.0-rc2
-   dotnet tool install Clinimatix.Caravel.Bosun --tool-path <tools-folder> --version 26.1.0-rc2
+   dotnet add package Clinimatix.Caravel.AspNetCore --version 26.1.1-rc2
+   dotnet tool install Clinimatix.Caravel.Bosun --tool-path <tools-folder> --version 26.1.1-rc2
    ```
 
 4. Commit your lock file, and upgrade deliberately by changing the selected version. Use locked restore in automation to enforce the recorded dependency graph.
@@ -85,7 +89,7 @@ Avoid floating version ranges for prereleases. Keep a known working version on h
 
 ## How releases are made
 
-For each release, a maintainer:
+For each release, a maintainer or an authorized maintenance agent:
 
 1. Chooses the version and commit, then updates the changelog, known limitations and any migration notes.
 2. Confirms that complete CI passed on that commit, including consumption of the Windows-built starter packages on Linux and macOS, and retains the tested package artifacts without rebuilding them, recording SHA-256 checksums.
@@ -96,6 +100,8 @@ For each release, a maintainer:
 After publication, check the README, getting-started guide, roadmap, changelog, release policy and versioned website against the published version and package feeds. Update completed milestones from future to past tense, verify exact-version installation commands, and keep planned capabilities distinct from implemented behavior. Correct installation/status prose without changing historical API contracts or package payloads.
 
 Ordinary pushes never create tags or releases. Publishing to nuget.org is a separate, deliberate step.
+
+A standing maintenance mandate may authorize compatible security/dependency releases and routine documentation/site publication through established destinations after required review and technical checks. Review may be performed by the authorized agent/reviewer process; it does not inherently require a new human approval. Escalate concrete changes to supported-consumer compatibility or platform requirements, access/trust boundaries, a new exposed destination, unavoidable destructive ownership conflicts, or a different product goal. Failed checks call for repair and revalidation, not an approval request. Dependency major-version labels alone do not establish incompatibility. Preserve configured publication-environment protections; never bypass them.
 
 ### NuGet publication
 
@@ -111,4 +117,12 @@ After NuGet finishes validation and indexing, verify organization ownership and 
 
 ## Support
 
-Fixes go to the current prerelease or stable line. Older milestones aren't patched. Upgrade to the latest release and follow its migration notes. Report bugs and propose changes through [GitHub issues](https://github.com/Clinimatix/Caravel/issues) and pull requests.
+Fixes go to the current prerelease or stable line. Older candidate scopes and milestones are not patched by default; upgrade to the current line and follow its migration notes. An older stable family receives backports only while maintainers explicitly identify it as supported. The year and platform baseline stay with that family; support is not extended automatically by a new calendar year or .NET release.
+
+### Maintenance and backports
+
+Assess each confirmed defect against the affected supported lines. A compatible correction preserves documented APIs, schemas and minimum platform requirements. Keep the current RC suffix for a prerelease maintenance patch, or increment the numeric patch of a stable family. Raising the minimum .NET version or making a necessary breaking change requires the separate feature/milestone process; do not disguise it as maintenance.
+
+Every backport is a distinct reviewed change with regression coverage and complete qualification on its own exact release commit. Keep the supported family's LTS baseline and inspect the resolved dependency graph; an update to the latest dependency major is not automatically a compatible fix. Retain the qualified packages and checksums for each version independently. Never rebuild, replace or move a previously published version, including a release that needs correction.
+
+See [dependency maintenance](/v/dev/dependency-maintenance) for dependency review and [security reporting](/v/dev/security) for private vulnerability coordination. Report ordinary bugs and propose changes through [GitHub issues](https://github.com/Clinimatix/Caravel/issues) and pull requests.

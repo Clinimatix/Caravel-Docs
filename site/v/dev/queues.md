@@ -122,7 +122,7 @@ Both need the exact tenant ID, including case. An unknown job or wrong tenant re
 
 **Retries.** Failed jobs retry with exponential backoff, from five seconds up to five minutes by default (`RetryDelay` and `MaxRetryDelay`). `MaxAttempts` sets the total number of attempts, from 1 to 100. Failures are recorded as a short category such as `HandlerFailed`, `InvalidPayload` (a stored job the worker couldn't read) or `UnknownJobType`. Exception messages and payloads are never copied into the queue's diagnostics.
 
-**Timeouts and cancellation.** Leases last from one second to one hour. The worker cancels the handler's token when the lease runs out and when the host shuts down. Cancellation is cooperative, so pass the token to everything your handler awaits. Automatic renewal is opt-in; without it, keep jobs within the lease or split work into repeatable steps. An interrupted job becomes available again once its last lease expires.
+**Timeouts and cancellation.** Leases last from one second to one hour. The worker cancels the handler's token when the lease runs out and when the host shuts down. Cancellation is cooperative, so pass the token to everything your handler awaits. Automatic renewal is opt-in; without it, keep jobs within the lease or split work into repeatable steps. A job interrupted by the worker deadline remains leased until its last lease expires; cancellation does not add retry backoff. After expiry, another worker can reclaim it if attempts remain, or move it to the dead-letter state when the attempt budget is exhausted.
 
 ### Renew leases for longer work
 
@@ -206,7 +206,7 @@ This driver covers durable enqueue, delayed work, scoped execution, renewable le
 
 ## Try the runnable worker sample
 
-[Caravel.Worker](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/samples/Caravel.Worker) is a small, complete worker. Three jobs add 1, 2 and 3 to a report. It keeps the queue in `queue.db` and results in `results.db`, both in a folder you choose. Like any Caravel app, it doesn't create its schema on startup, so you apply its two migrations first.
+[Caravel.Worker](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/samples/Caravel.Worker) is a small, complete worker. Three jobs add 1, 2 and 3 to a report. It keeps the queue in `queue.db` and results in `results.db`, both in a folder you choose. Like any Caravel app, it doesn't create its schema on startup, so you apply its two migrations first.
 
 From the repository root, in PowerShell:
 

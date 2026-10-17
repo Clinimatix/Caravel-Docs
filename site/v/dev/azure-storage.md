@@ -58,7 +58,7 @@ Native `RequestFailedException` status and error codes remain available: for exa
 
 ## Authorize a download
 
-The [compiled download example](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/docs/examples/AuthorizedBlobDownload.cs) resolves an application record by ID after authenticating the caller. Its application-owned `IDownloadRecords` implementation must query current membership, permissions and file eligibility and return the key/ETag for the accepted bytes. A key, an old claim or a previously issued link is insufficient authority.
+The [compiled download example](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/docs/examples/AuthorizedBlobDownload.cs) resolves an application record by ID after authenticating the caller. Its application-owned `IDownloadRecords` implementation must query current membership, permissions and file eligibility and return the key/ETag for the accepted bytes. A key, an old claim or a previously issued link is insufficient authority.
 
 Map `AuthorizedBlobDownload.HandleAsync` behind your native authentication middleware and supply the policy store and disk. The example checks policy on every request before contacting storage. It serves a full attachment with a generated filename, `application/octet-stream`, `nosniff` and `no-store`, ignoring uploaded names, content types and client Range headers. A missing or replaced stored revision becomes a generic conflict response; provider failures receive a generic unavailable response. The adapter's separate ranged API remains available for applications that implement their own HTTP range policy.
 
