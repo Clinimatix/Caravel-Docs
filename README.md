@@ -70,3 +70,7 @@ The documentation and site code use the [MIT license](LICENSE). Clinimatix names
 Every build runs `npm run check:content`. It checks current guides against the release manifest for obsolete pre-RC statements, unavailable-package claims after verified NuGet publication, and mismatched package-install versions. Set `nugetPublished` on a release entry only after checking the published packages. These focused checks catch known drift patterns; they cannot establish that arbitrary prose or examples match implementation.
 
 At release time, review status and installation pages against the actual tag, GitHub release and NuGet feed. Periodically compare changed APIs, CLI schema, samples, package inventory and provider tests with the guides, then check remaining topics on a rotating basis. Compile/run relevant synthetic examples when behavior changes. Keep source corrections in the framework repository and import a reviewed commit; label historical snapshot corrections without changing their API contracts.
+
+## Build dependency security
+
+Stable VitePress 1.6.4 is retained with an explicit Vite 6.4.4 override to avoid the vulnerable Vite 5 and esbuild graph. The Vue plugin accepts Vite 6, and the existing Node.js 22-or-newer requirement is unchanged. Keep the reviewed lock file and run the existing tests, production build and browser checks when changing this override. Remove it only when the upstream dependency graph provides the supported patched tooling directly. Development remains bound to loopback.
