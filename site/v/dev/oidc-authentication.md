@@ -7,7 +7,7 @@ sourcePath: docs/OIDC-AUTHENTICATION.md
 
 Use OpenID Connect (OIDC) when people should sign in to your Caravel web app with an account they already have, such as a Microsoft Entra ID, Okta or Auth0 account. The identity provider handles passwords and sign-in policies; your app checks the result and starts its own secure browser session.
 
-You don't need a Caravel package for this. ASP.NET Core's `AddCookie` and `AddOpenIdConnect` already do the work, and the [Caravel.Oidc sample](https://github.com/Clinimatix/Caravel/blob/1b5bb346db4a9e6bc9ed7116ea485d561d59f391/samples/Caravel.Oidc/Program.cs) shows a careful, locked-down setup for an administration site. If your API receives access tokens instead of browser sign-ins, see [service authentication](/v/dev/service-authentication).
+You don't need a Caravel package for this. ASP.NET Core's `AddCookie` and `AddOpenIdConnect` already do the work, and the [Caravel.Oidc sample](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/samples/Caravel.Oidc/Program.cs) shows a careful, locked-down setup for an administration site. If your API receives access tokens instead of browser sign-ins, see [service authentication](/v/dev/service-authentication).
 
 ## Run the sample with your provider
 
