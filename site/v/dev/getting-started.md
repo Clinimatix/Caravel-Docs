@@ -9,6 +9,10 @@ This guide covers what happens inside a Caravel web app: how it starts up, how t
 
 ## Creating and running an app
 
+For the upcoming candidate, the [PowerShell installer](/v/dev/installer) provides verified,
+version-specific Bosun installation without changing PATH. Its public endpoint is pending
+website publication; existing package-feed installation remains available.
+
 This guide targets `26.1.1-rc2`. Install Bosun using a [configured package feed](/v/dev/release-policy#using-prerelease-packages) containing that exact version, or run the `caravel` tool from your selected source checkout with `dotnet run --project src/Caravel.Bosun -- <command>`. The table below uses source references; with the installed tool, omit `--framework-source .` to use packages from your configured feed.
 
 | Command | What it does |
@@ -102,7 +106,7 @@ app.MapPost("/api/greetings", (GreetingRequest request) => new { message = $"Hel
 public sealed record GreetingRequest([property: Required, StringLength(100, MinimumLength = 2)] string Name);
 ```
 
-The [sample app](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/samples/Caravel.App/Program.cs) shows this working end to end.
+The [sample app](https://github.com/Clinimatix/Caravel/blob/0eee580e42b2f38467a1e77886c32af63fb6da56/samples/Caravel.App/Program.cs) shows this working end to end.
 
 ## HTTP defaults
 

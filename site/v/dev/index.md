@@ -14,6 +14,8 @@ New here? Start with the [repository README](/v/dev/overview) and its quick star
 - [Development sessions](/v/dev/development): watch your web app and run a worker with one command
 - [Hosting](/v/dev/hosting): run web apps and workers as services, containers or IIS sites
 
+- [Caravel Fathom development context](/v/dev/agent-context): static project capability manifest and safe inspection
+
 ## Data
 
 - [Clarion](/v/dev/clarion): query and save models, soft deletes, factories and seeders
@@ -28,6 +30,8 @@ New here? Start with the [repository README](/v/dev/overview) and its quick star
 - [Windows authentication](/v/dev/windows-authentication): intranet sign-in with organizational accounts
 
 ## Application services
+
+- [Fathom application tools](/v/dev/fathom-tools): explicit in-process registration, authorization and fake handlers
 
 - [Events](/v/dev/events): notify other parts of your app
 - [Queues](/v/dev/queues): durable background jobs that survive restarts

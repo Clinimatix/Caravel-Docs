@@ -73,4 +73,4 @@ At release time, review status and installation pages against the actual tag, Gi
 
 ## Build dependency security
 
-Stable VitePress 1.6.4 is retained with an explicit Vite 6.4.4 override to avoid the vulnerable Vite 5 and esbuild graph. The Vue plugin accepts Vite 6, and the existing Node.js 22-or-newer requirement is unchanged. Keep the reviewed lock file and run the existing tests, production build and browser checks when changing this override. Remove it only when the upstream dependency graph provides the supported patched tooling directly. Development remains bound to loopback.
+Stable VitePress 1.6.4 is retained with an explicit Vite 6.4.5 override to avoid the vulnerable Vite 5 and esbuild graph. The Vue plugin accepts Vite 6, and the existing Node.js 22-or-newer requirement is unchanged. Keep the reviewed lock file and run the existing tests, production build and browser checks when changing this override. Remove it only when the upstream dependency graph provides the supported patched tooling directly. Development remains bound to loopback.

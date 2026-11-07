@@ -117,6 +117,6 @@ This version is a fresh start that replaces an earlier prototype.
 
 ## License and stewardship
 
-Clinimatix Caravel is developed and maintained by Clinimatix, LLC and available under the [MIT license](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/LICENSE), with original authorship preserved. Contributions, bug reports, and ideas are welcome. See [Contributing](/v/dev/contributing) and [Security](/v/dev/security).
+Clinimatix Caravel is developed and maintained by Clinimatix, LLC and available under the [MIT license](https://github.com/Clinimatix/Caravel/blob/0eee580e42b2f38467a1e77886c32af63fb6da56/LICENSE), with original authorship preserved. Contributions, bug reports, and ideas are welcome. See [Contributing](/v/dev/contributing) and [Security](/v/dev/security).
 
 Clinimatix Caravel is not affiliated with Laravel or Laravel, Inc.
