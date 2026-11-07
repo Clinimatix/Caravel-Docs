@@ -39,6 +39,8 @@ export function sync(repo, ref, version = 'dev', outputRoot = root) {
   for (const [slug, content] of documents) writeFileSync(resolve(folder, `${slug}.md`), content);
   const navigation = groups.map(([text, items]) => ({ text, items: items.map(([slug, title]) => ({ slug, title })) }));
   const entry = { id: version, label: version === 'dev' ? 'Development' : version, candidate, commit, released: version !== 'dev', navigation };
+  const installationVersion = versions.find(v => v.id === 'dev')?.installationVersion;
+  if (version === 'dev' && installationVersion) entry.installationVersion = installationVersion;
   writeFileSync(manifestPath, JSON.stringify([entry, ...versions.filter(v => v.id !== version)], null, 2) + '\n');
   console.log(`Imported ${documents.length} pages for ${version} from ${commit}.`);
 }

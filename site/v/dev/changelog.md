@@ -44,6 +44,14 @@ sourcePath: CHANGELOG.md
 - Added model-free Bosun `agent:manifest` v1: static, allowlisted project package hints, a versioned JSON contract and explicit inspection guidance without application startup or configuration/data export.
 - Named the AI suite Caravel Fathom and made its agent development foundation a minimum first-stable gate; application MCP and model workflows remain later opt-in stages.
 
+## 26.1.2-rc2
+
+Compatible security maintenance for RC2, preserving its APIs and .NET 10 platform family. No database migration is required. Keep all first-party packages on this exact version and review regenerated application locks. Existing application dependencies and deployed runtimes must be serviced separately; see [dependency maintenance](/v/dev/dependency-maintenance).
+
+- Selected .NET SDK 10.0.403 for source and CI builds, retaining the .NET 10 platform family and using the serviced 10.0.14 runtime.
+
+- Updated the SQL Server dependency and generated Identity starter to Microsoft.Data.SqlClient 6.1.8, enforcing explicit certificate hostnames and isolating encrypted enclave sessions by attestation protocol.
+
 ## 26.1.1-rc2
 
 This maintenance candidate preserves the RC2 APIs and .NET 10 baseline. Update all first-party packages together and deliberately regenerate and review application dependency locks. No database migration is required by these dependency fixes.

@@ -7,7 +7,7 @@ sourcePath: CONTRIBUTING.md
 
 Thanks for helping make Caravel better. Bug reports, fixes, documentation improvements, and ideas are all welcome.
 
-Caravel is maintained by Clinimatix, LLC under the [MIT license](https://github.com/Clinimatix/Caravel/blob/0eee580e42b2f38467a1e77886c32af63fb6da56/LICENSE). Please keep existing authorship and license notices intact.
+Caravel is maintained by Clinimatix, LLC under the [MIT license](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/LICENSE). Please keep existing authorship and license notices intact.
 
 ## Reporting a bug
 

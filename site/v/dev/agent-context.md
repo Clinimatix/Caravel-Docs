@@ -20,7 +20,7 @@ uses the same one-project rule as other Bosun commands.
 
 ## Version 1 contract
 
-The [JSON Schema](https://github.com/Clinimatix/Caravel/blob/0eee580e42b2f38467a1e77886c32af63fb6da56/docs/agent-manifest.schema.json) defines the output. `schemaVersion: 1` and
+The [JSON Schema](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/docs/agent-manifest.schema.json) defines the output. `schemaVersion: 1` and
 `kind: "caravel.project-capabilities"` identify this contract independently of the package
 release. Breaking field/type/meaning changes require a new schema version. Consumers
 should reject unsupported versions and tolerate additional fields in a supported version.
