@@ -13,13 +13,20 @@ export function contentIssues(markdown, { released, nugetPublished, candidate })
   return issues;
 }
 
+export function snapshotState(version, versions) {
+  const installVersion = version.installationVersion ?? version.candidate;
+  const published = versions.find(v => v.released && v.id === installVersion);
+  if (version.installationVersion && (version.released || !published?.nugetPublished))
+    throw new Error('An installationVersion override requires development docs and a verified published NuGet snapshot.');
+  return { candidate: installVersion, released: !!published, nugetPublished: published?.nugetPublished };
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const site = new URL('../site/', import.meta.url);
   const versions = JSON.parse(readFileSync(new URL('versions.json', site), 'utf8'));
   const failures = [];
   for (const version of versions) {
-    const published = versions.find(v => v.released && v.id === version.candidate);
-    const state = { candidate: version.candidate, released: !!published, nugetPublished: published?.nugetPublished };
+    const state = snapshotState(version, versions);
     for (const { slug } of version.navigation.flatMap(group => group.items)) {
       const path = `v/${version.id}/${slug}.md`;
       failures.push(...contentIssues(readFileSync(new URL(path, site), 'utf8'), state).map(issue => `${path}: ${issue}`));

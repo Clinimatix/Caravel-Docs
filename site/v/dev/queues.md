@@ -206,7 +206,7 @@ This driver covers durable enqueue, delayed work, scoped execution, renewable le
 
 ## Try the runnable worker sample
 
-[Caravel.Worker](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/samples/Caravel.Worker) is a small, complete worker. Three jobs add 1, 2 and 3 to a report. It keeps the queue in `queue.db` and results in `results.db`, both in a folder you choose. Like any Caravel app, it doesn't create its schema on startup, so you apply its two migrations first.
+[Caravel.Worker](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/samples/Caravel.Worker) is a small, complete worker. Three jobs add 1, 2 and 3 to a report. It keeps the queue in `queue.db` and results in `results.db`, both in a folder you choose. Like any Caravel app, it doesn't create its schema on startup, so you apply its two migrations first.
 
 From the repository root, in PowerShell:
 
@@ -245,3 +245,26 @@ If the queue's database fails, the host stops. .NET's `RunAsync` returns normall
 `pwsh -File scripts/Test-WorkerSmoke.ps1` runs the sample end to end against freshly packed packages. Along the way it deliberately crashes a worker right after it saves a result but before it acknowledges the job, waits for the lease to expire, and confirms the restarted worker finishes with exactly three events and a total of six. It also checks continuous mode, the read-only status command, and that a worker whose database isn't migrated exits with code 1. On Linux it also sends a real SIGTERM mid-job and checks for a clean exit and recovery.
 
 The sample reads two settings that exist only to support these tests: `CARAVEL_WORKER_CRASH_AFTER_RESULT=1` makes it exit (code 73) right after saving a result, and `CARAVEL_WORKER_LEASE_SECONDS` shortens the lease (60 seconds by default). They're part of the sample, not the queue package.
+
+## Immediate jobs for development and tests (unreleased)
+
+Register the same typed handler used by the durable queue, then opt into synchronous dispatch:
+
+```csharp
+services.AddQueueJob<GenerateReport, GenerateReportHandler>("reports.generate.v1");
+services.AddCaravelSynchronousJobs();
+// After building your service provider:
+await provider.GetRequiredService<SynchronousJobDispatcher>()
+    .DispatchAsync(new GenerateReport(reportId), authorizedTenantId, cancellationToken);
+```
+
+Dispatch waits for one handler invocation in a fresh asynchronous dependency-injection scope.
+It uses the registered JSON payload contract, a new job ID, queue name `sync` and attempt 1.
+Authorize the tenant before dispatch. Handler exceptions and cancellation propagate to the
+caller; scoped services are disposed even when a handler fails.
+
+This explicit development/test path has no database, hosted worker, durable receipt, retry,
+scheduling or idempotency guarantee. Calling twice runs twice. It does not enlist in the
+caller's dependency-injection scope or transaction. Use the transactional outbox when work
+must wait for an application commit, and the database queue when it must survive a restart.
+No existing enqueue or staging API changes driver automatically.

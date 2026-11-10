@@ -62,4 +62,4 @@ services.AddCaravelEvents();
 
 The fake records messages without running listeners. Its `DispatchedEvents` property returns a snapshot you can inspect with your preferred test library. Register it before `AddCaravelEvents`, or use DI's `Replace` helper afterward.
 
-The [Identity sample](https://github.com/Clinimatix/Caravel/blob/cc8652bfa48c6085ab5bbb4c192d29152c7a3588/samples/Caravel.Identity/Program.cs) shows a saved note followed by an event. Its tests verify that a listener sees the same scoped context and the already-saved record.
+The [Identity sample](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/samples/Caravel.Identity/Program.cs) shows a saved note followed by an event. Its tests verify that a listener sees the same scoped context and the already-saved record.
