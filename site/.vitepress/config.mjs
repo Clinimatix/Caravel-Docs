@@ -17,12 +17,7 @@ export default defineConfig({
     logoLink: { link: '/', target: '_self' },
     nav: [{ text: 'Documentation', link: '/' }, { text: 'Versions', link: '/versions' }, { text: 'Contribute', link: 'https://github.com/Clinimatix/Caravel-Docs' }],
     socialLinks: [{ icon: 'github', link: 'https://github.com/Clinimatix/Caravel' }],
-    search: { provider: 'local', options: { miniSearch: { searchOptions: {
-      filter: result => {
-        const version = typeof window !== 'undefined' && window.location.pathname.match(/\/v\/([^/]+)\//)?.[1];
-        return !version || result.id.includes(`/v/${version}/`);
-      }
-    } } } },
+    search: { provider: 'local' },
     outline: { label: 'On this page', level: [2, 3] },
     sidebar: { '/': sidebarFor(defaultVersion), ...Object.fromEntries(versions.map(version => [`/v/${version.id}/`, sidebarFor(version.id)])) },
     footer: { message: 'Open source under the MIT license.', copyright: 'Copyright © Clinimatix, LLC' }
