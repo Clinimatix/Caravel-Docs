@@ -9,11 +9,10 @@ This guide covers what happens inside a Caravel web app: how it starts up, how t
 
 ## Creating and running an app
 
-For the upcoming candidate, the [PowerShell installer](/v/dev/installer) provides verified,
-version-specific Bosun installation without changing PATH. Its public endpoint is pending
-website publication; existing package-feed installation remains available.
+The [PowerShell installer](/v/dev/installer) provides verified, version-specific Bosun
+installation without changing PATH. Package-feed installation is also available.
 
-This guide targets `26.1.2-rc2`. Install Bosun using a [configured package feed](/v/dev/release-policy#using-prerelease-packages) containing that exact version, or run the `caravel` tool from your selected source checkout with `dotnet run --project src/Caravel.Bosun -- <command>`. The table below uses source references; with the installed tool, omit `--framework-source .` to use packages from your configured feed.
+This guide targets `26.1.3-rc2`. Install Bosun using a [configured package feed](/v/dev/release-policy#using-prerelease-packages) containing that exact version, or run the `caravel` tool from your selected source checkout with `dotnet run --project src/Caravel.Bosun -- <command>`. The table below uses source references; with the installed tool, omit `--framework-source .` to use packages from your configured feed.
 
 | Command | What it does |
 | --- | --- |
@@ -32,7 +31,7 @@ Razor/API starters listen on `https://localhost:7043` and `http://localhost:5043
 
 The API starter comes with `GET /hello`, `POST /api/greetings` (with a validated `name`) and `GET /health/live`, plus an OpenAPI document at `/openapi/v1.json` in Development. These demo endpoints are public and store nothing. When you're ready to add accounts, ownership checks, request limits and a database, the [backend sample](/v/dev/backend-sample) shows how the pieces fit together.
 
-The optional `identity` stack is included in the `26.1.2-rc2` Bosun candidate; published RC1 does not include it. It bundles SQLite migrations, native provider configuration, current workspace authorization and the [authorized-command browser flow](/v/dev/authorized-commands). Installed-tool generation works without a checkout. Its small UI supports password sign-in/sign-out; finished account/MFA screens and external identity remain separate integrations. No database, account, credential or cloud resource is created by `caravel new`.
+The optional `identity` stack is included in the `26.1.3-rc2` Bosun candidate; published RC1 does not include it. It bundles SQLite migrations, native provider configuration, current workspace authorization and the [authorized-command browser flow](/v/dev/authorized-commands). Installed-tool generation works without a checkout. Its small UI supports password sign-in/sign-out; finished account/MFA screens and external identity remain separate integrations. No database, account, credential or cloud resource is created by `caravel new`.
 
 ## A typical `Program.cs`
 
@@ -106,7 +105,7 @@ app.MapPost("/api/greetings", (GreetingRequest request) => new { message = $"Hel
 public sealed record GreetingRequest([property: Required, StringLength(100, MinimumLength = 2)] string Name);
 ```
 
-The [sample app](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/samples/Caravel.App/Program.cs) shows this working end to end.
+The [sample app](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/samples/Caravel.App/Program.cs) shows this working end to end.
 
 ## HTTP defaults
 

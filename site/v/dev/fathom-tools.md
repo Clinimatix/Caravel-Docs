@@ -69,7 +69,7 @@ errors without any external service. No network MCP endpoint, protocol compatibi
 provider adapter or model workflow is supplied by this registry. The required first-stable
 foundation and later qualification remain in the [release plan](/v/dev/next-release).
 
-For tenant and resource authorization, use the compiled [project-tool example](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/samples/FathomPolicy/README.md).
+For tenant and resource authorization, use the compiled [project-tool example](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/samples/FathomPolicy/README.md).
 It binds a trusted application's principal once per scope, rejects forged binding fields,
 checks current per-resource read/write grants and formats safe application errors. Its
 source and package-consumer tests cover revocation between calls and overlapping scopes.

@@ -85,7 +85,7 @@ An opt-in [in-process application tool registry](/v/dev/fathom-tools) is in deve
 ahead of the network transport. The candidate includes its in-process contracts; network
 MCP remains later work. Qualify a synthetic consumer, trusted principal binding, resource-level
 denial, cancellation and safe error presentation before adding a transport.
-The compiled [application-policy example](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/samples/FathomPolicy/README.md) covers trusted
+The compiled [application-policy example](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/samples/FathomPolicy/README.md) covers trusted
 scope binding, forged tenant/resource denial, separate read/write grants, permission
 revocation between calls, concurrent scope isolation and safe application errors.
 Core's service-package consumer suite exercises this same example; run it against

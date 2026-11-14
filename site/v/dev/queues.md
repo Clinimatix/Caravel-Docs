@@ -206,7 +206,7 @@ This driver covers durable enqueue, delayed work, scoped execution, renewable le
 
 ## Try the runnable worker sample
 
-[Caravel.Worker](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/samples/Caravel.Worker) is a small, complete worker. Three jobs add 1, 2 and 3 to a report. It keeps the queue in `queue.db` and results in `results.db`, both in a folder you choose. Like any Caravel app, it doesn't create its schema on startup, so you apply its two migrations first.
+[Caravel.Worker](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/samples/Caravel.Worker) is a small, complete worker. Three jobs add 1, 2 and 3 to a report. It keeps the queue in `queue.db` and results in `results.db`, both in a folder you choose. Like any Caravel app, it doesn't create its schema on startup, so you apply its two migrations first.
 
 From the repository root, in PowerShell:
 
