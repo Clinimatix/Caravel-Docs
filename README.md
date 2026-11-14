@@ -28,19 +28,19 @@ Product guides live alongside the [framework source](https://github.com/Clinimat
 ## Update development documentation
 
 ```sh
-npm run sync -- <framework-checkout> <reviewed-commit> dev
+node <documentation-checkout>/scripts/sync.mjs . <reviewed-commit> dev
 npm test
 npm run build
 ```
 
-The importer reads only the public document allowlist from Git, not uncommitted files. It rewrites cross-links into the same documentation version and pins source-code links to the imported commit. Review the entire imported diff for accuracy and audience before committing. Keep the introduction and product website's release wording aligned with the new snapshot.
+Run the import command with the framework checkout as the current directory. Run the documentation tests and build from this documentation checkout. The importer reads only the public document allowlist from Git, not uncommitted files. It rewrites cross-links into the same documentation version and pins source-code links to the imported commit. Review the entire imported diff for accuracy and audience before committing. Keep the introduction and product website's release wording aligned with the new snapshot.
 
 ## Add release documentation
 
 After a framework version has actually been published and its tag fetched:
 
 ```sh
-npm run sync -- <framework-checkout> v<version> <version>
+node <documentation-checkout>/scripts/sync.mjs . v<version> <version>
 npm test
 npm run build
 ```

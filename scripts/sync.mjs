@@ -18,26 +18,39 @@ export function rewriteLink(href, source, version, commit) {
 
 export function sync(repo, ref, version = 'dev', outputRoot = root) {
   if (!/^(dev|\d{2}\.\d+\.\d+(?:-(?:m|rc)\d+)?)$/.test(version)) throw new Error('Use dev or an exact Caravel version.');
-  const git = (...args) => execFileSync('git', ['-C', resolve(repo), ...args], { encoding: 'utf8' }).trimEnd();
+  if (resolve(repo) !== resolve(process.cwd())) throw new Error('Run the importer from the framework checkout directory.');
+  const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trimEnd();
+  if (resolve(git('rev-parse', '--show-toplevel')) !== resolve(repo)) throw new Error('Framework repository root must match the current directory.');
   const commit = git('rev-parse', '--verify', `${ref}^{commit}`);
-  if (version !== 'dev' && git('rev-parse', '--verify', `refs/tags/v${version}^{commit}`) !== commit) throw new Error('A release snapshot must match its version tag.');
+  const tagCommit = version === 'dev' ? null : git('rev-parse', '--verify', `refs/tags/v${version}^{commit}`);
+  const available = new Set(git('ls-tree', '-r', '--name-only', commit).split('\n'));
+  const optional = new Set(['installer', 'agent-context', 'fathom-tools', 'next-release']);
+  const documents = pages.filter(page => version === 'dev' || !optional.has(page.slug) || available.has(page.source))
+    .map(page => ({ ...page, markdown: git('show', `${commit}:${page.source}`) }));
+  const props = git('show', `${commit}:Directory.Build.props`);
+  const candidate = props.match(/<Version>([^<]+)<\/Version>/)?.[1];
+  return writeSnapshot({ commit, tagCommit, candidate, documents }, version, outputRoot);
+}
+
+export function writeSnapshot({ commit, tagCommit, candidate, documents }, version, outputRoot = root) {
+  if (!/^(dev|\d{2}\.\d+\.\d+(?:-(?:m|rc)\d+)?)$/.test(version)) throw new Error('Use dev or an exact Caravel version.');
+  if (version !== 'dev' && tagCommit !== commit) throw new Error('A release snapshot must match its version tag.');
+  if (!candidate) throw new Error('Framework version not found.');
+  if (version !== 'dev' && candidate !== version) throw new Error('Version tag and framework package version must agree.');
   const folder = resolve(outputRoot, 'site/v', version);
   if (version !== 'dev' && existsSync(folder)) throw new Error('Release snapshot already exists; update guidance deliberately instead of overwriting it.');
   // Read every source first; a missing document must not leave a partial snapshot.
-  const documents = pages.map(page => {
-    const markdown = git('show', `${commit}:${page.source}`);
+  const rendered = documents.map(page => {
+    const markdown = page.markdown;
     const body = markdown.replace(/\]\(([^\s)]+)\)/g, (_, href) => `](${rewriteLink(href, page.source, version, commit)})`);
     return [page.slug, `---\ntitle: ${JSON.stringify(page.title)}\nsourcePath: ${page.source}\n---\n\n${body}\n`];
   });
   const manifestPath = resolve(outputRoot, 'site/versions.json');
   const versions = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : [];
-  const props = git('show', `${commit}:Directory.Build.props`);
-  const candidate = props.match(/<Version>([^<]+)<\/Version>/)?.[1];
-  if (!candidate) throw new Error('Framework version not found.');
-  if (version !== 'dev' && candidate !== version) throw new Error('Version tag and framework package version must agree.');
   mkdirSync(folder, { recursive: true });
-  for (const [slug, content] of documents) writeFileSync(resolve(folder, `${slug}.md`), content);
-  const navigation = groups.map(([text, items]) => ({ text, items: items.map(([slug, title]) => ({ slug, title })) }));
+  for (const [slug, content] of rendered) writeFileSync(resolve(folder, `${slug}.md`), content);
+  const included = new Set(documents.map(page => page.slug));
+  const navigation = groups.map(([text, items]) => ({ text, items: items.filter(([slug]) => included.has(slug)).map(([slug, title]) => ({ slug, title })) })).filter(group => group.items.length);
   const entry = { id: version, label: version === 'dev' ? 'Development' : version, candidate, commit, released: version !== 'dev', navigation };
   const installationVersion = versions.find(v => v.id === 'dev')?.installationVersion;
   if (version === 'dev' && installationVersion) entry.installationVersion = installationVersion;
