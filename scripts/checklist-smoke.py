@@ -99,9 +99,9 @@ def api(folder):
 
 with tempfile.TemporaryDirectory() as temp:
     work = Path(temp)
-    (work / "global.json").write_text(json.dumps({"sdk": {"version": "10.0.403", "rollForward": "disable"}}))
+    (work / "global.json").write_text(json.dumps({"sdk": {"version": "10.0.404", "rollForward": "disable"}}))
     os.environ["ASPNETCORE_ENVIRONMENT"] = "Development"
-    assert dotnet(work, "--version") == "10.0.403"
+    assert dotnet(work, "--version") == "10.0.404"
     with zipfile.ZipFile(ROOT / "site/public/ships-checklist.zip") as archive:
         archive.extractall(work)
     for name, check in [("Web", web), ("Cli", cli), ("Api", api)]:
@@ -110,4 +110,4 @@ with tempfile.TemporaryDirectory() as temp:
         assert guide.read_text(encoding="utf-8") == (folder / "README.md").read_text(encoding="utf-8")
         subprocess.run(["dotnet", "build"], cwd=folder, check=True)
         check(folder)
-        print(f"{name} walkthrough passed with SDK 10.0.403", flush=True)
+        print(f"{name} walkthrough passed with SDK 10.0.404", flush=True)

@@ -4,14 +4,14 @@ Save your first task in a Razor page. A Caravel provider will give every request
 
 ## Create the project
 
-Use a serviced .NET 10 SDK (10.0.403 or later in the 10.0 line). Open a terminal in an empty parent folder and run:
+Use a serviced .NET 10 SDK (10.0.404 or later in the 10.0 line). Open a terminal in an empty parent folder and run:
 
 ```sh
 dotnet new web -n ShipWeb --framework net10.0 --no-restore
 cd ShipWeb
 ```
 
-Replace `ShipWeb.csproj` with the following package references and project settings. All three guides target Caravel 26.1.2-rc2.
+Replace `ShipWeb.csproj` with the following package references and project settings. All three guides target Caravel 26.1.3-rc2.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -24,7 +24,7 @@ Replace `ShipWeb.csproj` with the following package references and project setti
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Clinimatix.Caravel.AspNetCore" Version="26.1.2-rc2" />
+    <PackageReference Include="Clinimatix.Caravel.AspNetCore" Version="26.1.3-rc2" />
   </ItemGroup>
 </Project>
 ```
