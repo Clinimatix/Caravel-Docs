@@ -4,14 +4,14 @@ Record a task in one terminal command and complete it in another. A Caravel even
 
 ## Create the project
 
-Use a serviced .NET 10 SDK (10.0.403 or later in the 10.0 line). Open a terminal in an empty parent folder and run:
+Use a serviced .NET 10 SDK (10.0.404 or later in the 10.0 line). Open a terminal in an empty parent folder and run:
 
 ```sh
 dotnet new console -n ShipCli --framework net10.0 --no-restore
 cd ShipCli
 ```
 
-Replace `ShipCli.csproj` with the following package references and project settings. All three guides target Caravel 26.1.2-rc2.
+Replace `ShipCli.csproj` with the following package references and project settings. All three guides target Caravel 26.1.3-rc2.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -24,8 +24,8 @@ Replace `ShipCli.csproj` with the following package references and project setti
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Clinimatix.Caravel.Events" Version="26.1.2-rc2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.13" />
+    <PackageReference Include="Clinimatix.Caravel.Events" Version="26.1.3-rc2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.15" />
   </ItemGroup>
 </Project>
 ```
