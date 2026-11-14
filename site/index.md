@@ -12,6 +12,8 @@ Expressive applications. Native .NET foundations. Build on .NET 10 LTS with ASP.
 
 ## Start building
 
+[Build Ship’s Checklist](learn/ships-checklist/index.md) from an empty project. Start with a web page, then try a terminal command or a SQLite-backed API.
+
 - [Overview and quick start](v/26.1.2-rc2/overview.md)
 - [Create an application](v/26.1.2-rc2/getting-started.md)
 - [Browse every guide](v/26.1.2-rc2/index.md)
