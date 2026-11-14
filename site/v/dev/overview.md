@@ -65,10 +65,10 @@ It is organized into optional packages, so you can take as much or as little as 
 
 You'll need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0). Nothing else is required: no database server, Node, or Docker.
 
-The current maintenance release is **`26.1.2-rc2`**, a compatible patch for RC2. All thirteen packages are available on NuGet; pin the exact version when installing Bosun or libraries. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [NuGet](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations; see [prerelease installation](/v/dev/release-policy#using-prerelease-packages).
+The current maintenance release is **`26.1.3-rc2`**, a compatible patch for RC2. All thirteen packages are available on NuGet; pin the exact version when installing Bosun or libraries. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [NuGet](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations; see [prerelease installation](/v/dev/release-policy#using-prerelease-packages).
 
 ```powershell
-dotnet tool install --global Clinimatix.Caravel.Bosun --version 26.1.2-rc2
+dotnet tool install --global Clinimatix.Caravel.Bosun --version 26.1.3-rc2
 caravel new MyApp
 caravel serve --project MyApp
 ```
@@ -91,7 +91,7 @@ caravel route:list --project MyApp   # list your routes
 caravel doctor                       # check your setup
 ```
 
-To add Caravel to an existing application, install only the [packages you need](https://www.nuget.org/profiles/Clinimatix) with an exact version, for example `dotnet add package Clinimatix.Caravel.AspNetCore --version 26.1.2-rc2` once your feed contains it. Keep all first-party packages on the same version and deliberately review regenerated dependency locks. This RC2 maintenance candidate requires no database migration. [Upgrading from RC1](/v/dev/upgrading) covers the earlier API additions and schema changes. [GitHub release ZIPs](https://github.com/Clinimatix/Caravel/releases) remain available for [local-feed installation](/v/dev/release-policy#using-a-release-zip).
+To add Caravel to an existing application, install only the [packages you need](https://www.nuget.org/profiles/Clinimatix) with an exact version, for example `dotnet add package Clinimatix.Caravel.AspNetCore --version 26.1.3-rc2` once your feed contains it. Keep all first-party packages on the same version and deliberately review regenerated dependency locks. This RC2 maintenance candidate requires no database migration. [Upgrading from RC1](/v/dev/upgrading) covers the earlier API additions and schema changes. [GitHub release ZIPs](https://github.com/Clinimatix/Caravel/releases) remain available for [local-feed installation](/v/dev/release-policy#using-a-release-zip).
 
 ## Learn more
 
@@ -106,7 +106,7 @@ To add Caravel to an existing application, install only the [packages you need](
 
 ## Project status
 
-The **`26.1.2-rc2`** maintenance candidate updates RC2's SQL Server dependency to Microsoft.Data.SqlClient 6.1.8 and its build runtime to .NET/ASP.NET Core 10.0.14 while preserving its APIs and .NET 10 baseline. Published RC2 packages remain unchanged. Its scope includes the application foundation, Clarion data layer, authentication, durable background work, mail and notifications, and Bosun tooling. Work toward stable focuses on fixes, upgrade validation and real-application feedback. See the [changelog](/v/dev/changelog).
+The **`26.1.3-rc2`** maintenance release fixes account-recovery recipient handling and services .NET/ASP.NET Core dependencies to 10.0.15, preserving SqlClient 6.1.8, RC2 APIs and the .NET 10 baseline. Published RC2 packages remain unchanged. Its scope includes the application foundation, Clarion data layer, authentication, durable background work, mail and notifications, and Bosun tooling. Work toward stable focuses on fixes, upgrade validation and real-application feedback. See the [changelog](/v/dev/changelog).
 
 - **Databases:** SQL Server, PostgreSQL, and SQLite are supported and tested. MariaDB is planned once an EF Core 10–compatible provider is available. See [database providers](/v/dev/database-providers).
 - **Integration limits:** the Identity starter provides password sign-in/sign-out and work-item forms; complete account/MFA screens and external identity need application integration. Azure credentials, provisioning, scanning and cloud retention require separate setup and qualification.
@@ -117,6 +117,6 @@ This version is a fresh start that replaces an earlier prototype.
 
 ## License and stewardship
 
-Clinimatix Caravel is developed and maintained by Clinimatix, LLC and available under the [MIT license](https://github.com/Clinimatix/Caravel/blob/e71d1603fa891345f28e62ffd4f93aceabc34018/LICENSE), with original authorship preserved. Contributions, bug reports, and ideas are welcome. See [Contributing](/v/dev/contributing) and [Security](/v/dev/security).
+Clinimatix Caravel is developed and maintained by Clinimatix, LLC and available under the [MIT license](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/LICENSE), with original authorship preserved. Contributions, bug reports, and ideas are welcome. See [Contributing](/v/dev/contributing) and [Security](/v/dev/security).
 
 Clinimatix Caravel is not affiliated with Laravel or Laravel, Inc.
