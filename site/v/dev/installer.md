@@ -10,7 +10,7 @@ The standalone PowerShell 7 installer for Bosun is available at
 embedded catalog of immutable release ZIP checksums and source commits. It does not install
 application libraries, provision a runtime, create a database or install frontend tools.
 
-Inspect the [installer source](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/scripts/install.ps1) and verify the digest below before
+Inspect the [installer source](https://github.com/Clinimatix/Caravel/blob/fdf4c4b069054fdd60eaf475aa18757cbae20ad9/scripts/install.ps1) and verify the digest below before
 executing it. Existing applications need their own dependency, recovery-handler and
 deployed-runtime updates; see [security maintenance](/v/dev/dependency-maintenance).
 
@@ -37,7 +37,7 @@ Get-Content ./caravel-install.ps1
 The shorter execution line, once the local script is verified, is:
 
 ```powershell
-./caravel-install.ps1 -Version 26.1.3-rc2
+./caravel-install.ps1 -Version 26.1.3-rc3
 ```
 
 Avoid piping an unverified download into `Invoke-Expression`. The script's embedded catalog
@@ -58,7 +58,7 @@ Once this exact script is published and its digest confirmed against reviewed so
 download, verification and invocation can also be written as one line:
 
 ```powershell
-$p = Join-Path ([IO.Path]::GetTempPath()) (([guid]::NewGuid().ToString('N')) + '.ps1'); Invoke-WebRequest https://caravel.clinimatix.com/install.ps1 -OutFile $p; if ((Get-FileHash $p -Algorithm SHA256).Hash -ne 'b949c3b91c89dd1b0f693d87ceb4ebb62e5c767d09d571db5aa6915d1d194b3a') { throw 'Installer checksum mismatch' }; & $p -Channel prerelease
+$p = Join-Path ([IO.Path]::GetTempPath()) (([guid]::NewGuid().ToString('N')) + '.ps1'); Invoke-WebRequest https://caravel.clinimatix.com/install.ps1 -OutFile $p; if ((Get-FileHash $p -Algorithm SHA256).Hash -ne '9b1b1d561181888435f1064c59b9264437d325f6001c1597575ff36726e88647') { throw 'Installer checksum mismatch' }; & $p -Channel prerelease
 ```
 
 An endpoint update deliberately causes an older digest-pinned command to fail. Review the
@@ -69,7 +69,7 @@ file according to your normal review workflow.
 
 The default `-Channel stable` selects the catalog's reviewed stable release. No stable
 release is cataloged yet, so it stops with guidance instead of silently installing an RC.
-`-Channel prerelease` currently selects `26.1.3-rc2`. `-Version` overrides the channel and
+`-Channel prerelease` currently selects `26.1.3-rc3`. `-Version` overrides the channel and
 must match an exact catalog entry. The earlier `26.1.1-rc2` entry remains available for explicit pins and rollback. Unsupported versions fail before download. Channel
 advancement requires a reviewed catalog update after immutable release qualification;
 this change does not publish or invent RC3 packages.
@@ -78,8 +78,8 @@ The default destination is `$HOME/.caravel/tools/<version>`; `-InstallRoot <dire
 selects another writable root. Invoke the printed full path, for example:
 
 ```powershell
-& "$HOME/.caravel/tools/26.1.3-rc2/caravel" version
-& "$HOME/.caravel/tools/26.1.3-rc2/caravel" new MyApp
+& "$HOME/.caravel/tools/26.1.3-rc3/caravel" version
+& "$HOME/.caravel/tools/26.1.3-rc3/caravel" new MyApp
 ```
 
 Earlier version directories remain available for rollback. Repeating the same version
