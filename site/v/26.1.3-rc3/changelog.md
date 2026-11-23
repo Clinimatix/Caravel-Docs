@@ -1,0 +1,158 @@
+---
+title: "Changelog"
+statusCorrection: fdf4c4b069054fdd60eaf475aa18757cbae20ad9
+sourcePath: CHANGELOG.md
+---
+
+# Changelog
+
+## Security maintenance
+
+- Password-reset links use the stored account email address rather than a request-supplied recipient. Missing stored addresses do not send reset or confirmation mail.
+- .NET dependencies and generated starters use 10.0.15, with SDK 10.0.404 and Node 24.22.3 for build qualification. Existing application-owned recovery handlers and deployed runtimes require separate remediation.
+- Pull requests run full supported-platform qualification, with immutable build Actions and a required aggregate check.
+
+
+## 26.1.3-rc3 (release candidate)
+
+- Qualified Fathom argument admission for read and write tools: invalid or disposed JSON never reaches authorization or handlers, while valid objects retain application-owned validation.
+
+- Qualified Fathom handler completion, cooperative cancellation and result lifetime for read and write tools; clarified application-owned JSON output contracts.
+
+- Qualified Fathom registry snapshots, read-only descriptor discovery and exact case-sensitive routing without invoking application callbacks during discovery.
+
+- Qualified Fathom DTD rejection with valid empty declarations, internal entities and default attributes in source and installed-tool checks.
+
+- Qualified Fathom's existing project-file size limit with valid UTF-8 and UTF-16 XML at and above the byte boundary, including byte-order marks, through source and installed-tool checks.
+
+- Made queue lease-renewal qualification independent of wall-clock scheduling, with separate coverage for expiry before handler startup and cancellation after startup, durable recovery and exact-package execution.
+
+- Added a compiled Fathom application-policy example with source and exact-package coverage for trusted tenant/resource binding, separate read/write grants, revocation between calls, concurrent scope isolation and safe application errors. Registry APIs and exception behavior are unchanged.
+
+- Clarified diagnostic-process effects in Bosun's command schema and extended installed Fathom guidance checks to require matching versions, existing commands and route inspection options.
+
+- Extended offline installer qualification for archive paths, duplicate entries, package identity/XML rejection and interrupted download recovery.
+
+- Added exact-package server-provider worker container SIGTERM and fresh-process recovery qualification with durable result deduplication.
+
+- Added hosted worker shutdown and fresh-host recovery contracts on disposable server providers, including persisted-result deduplication and exact candidate package verification.
+
+- Qualify installed Fathom manifests against exact Bosun package bytes, including static inspection, disclosure-safe failures and cross-platform artifact reuse.
+
+- Extended exact-package worker container checks to in-flight SIGTERM, cooperative handler cancellation and lease recovery without duplicate persisted results.
+
+- Added exact-package Linux worker runtime-container qualification for persistent deduplication, crash recovery, idle shutdown and infrastructure-failure exit without publishing images.
+
+- Added service-package testing against existing artifacts, with source/version consistency checks and restored-package checksum verification.
+- Retained bounded per-platform service-package evidence in CI and added expected-source checks and focused restored-graph integrity regressions.
+- Added ordered, count-free Clarion query slices with bounded page sizes and explicit continuation; existing total-count APIs are preserved.
+- Added validated transactional mail and notification staging through the application outbox, preserving application-owned eligibility and delivery policy.
+- Extended package-consumer qualification to Core's Fathom contracts and synchronous dispatch cancellation, payload snapshots and independent scopes, with optional unique development package versions.
+- Added a standalone PowerShell Bosun installer with a reviewed release catalog, SHA-256 and source-commit verification, isolated version directories, explicit prerelease selection and safe repeat/failure behavior. The prerelease installer selects 26.1.3-rc3; see [installation](/v/26.1.3-rc3/installer).
+- Added explicit synchronous execution of registered jobs for development and tests, without a database or worker. Handler failures propagate; this path provides no durable receipt, retry or deduplication.
+- Planned a bounded RC3-to-stable qualification path using the existing 26.1 calendar-version convention; see [next release](/v/26.1.3-rc3/next-release).
+- Added opt-in Caravel Fathom in-process application tool contracts and registry in Core, with mandatory per-call application authorization, declared read/write effects, cancellation boundaries and fake-handler coverage. Network MCP and model workflows remain planned.
+
+- Restrict Fathom static package hints to declarative MSBuild items, excluding executable targets and unrelated XML.
+
+- Added model-free Bosun `agent:manifest` v1: static, allowlisted project package hints, a versioned JSON contract and explicit inspection guidance without application startup or configuration/data export.
+- Named the AI suite Caravel Fathom and made its agent development foundation a minimum first-stable gate; application MCP and model workflows remain later opt-in stages.
+
+## 26.1.2-rc2
+
+Compatible security maintenance for RC2, preserving its APIs and .NET 10 platform family. No database migration is required. Keep all first-party packages on this exact version and review regenerated application locks. Existing application dependencies and deployed runtimes must be serviced separately; see [dependency maintenance](/v/26.1.3-rc3/dependency-maintenance).
+
+- Selected .NET SDK 10.0.403 for source and CI builds, retaining the .NET 10 platform family and using the serviced 10.0.14 runtime.
+
+- Updated the SQL Server dependency and generated Identity starter to Microsoft.Data.SqlClient 6.1.8, enforcing explicit certificate hostnames and isolating encrypted enclave sessions by attestation protocol.
+
+## 26.1.1-rc2
+
+This maintenance candidate preserves the RC2 APIs and .NET 10 baseline. Update all first-party packages together and deliberately regenerate and review application dependency locks. No database migration is required by these dependency fixes.
+
+- Updated Microsoft ASP.NET Core, EF Core and Extensions dependencies and generated starters to 10.0.13, with a fixed PKCS dependency in optional mail and SQL graphs. Runtime security fixes require .NET/ASP.NET Core 10.0.13 or later servicing on deployment hosts; see [dependency maintenance](/v/26.1.3-rc3/dependency-maintenance).
+- Updated the optional Azure adapter to Azure.Storage.Blobs 12.30.1 and explicitly pinned Azure.Core 1.61.0, covering encrypted-stream disposal and streaming-content logging fixes. Applications still supply their Azure clients and own their transport and encryption options.
+- Updated the SQL Server sample, generated Identity starter and provider tests to Microsoft.Data.SqlClient 6.1.7 and Azure.Core 1.61.0, covering vendor certificate-pin, enclave-attestation and Azure transport fixes while keeping Clarion provider-neutral.
+- Fixed queue deadline cancellation recording retry backoff or dead-lettering a job just before its lease expired. Interrupted jobs remain leased until expiry and retain the existing attempt budget.
+- Corrected the Azure adapter's Hosting.Abstractions lock resolution to the centrally requested .NET 10 package version.
+- Clarified compatible maintenance versions within the current RC line, supported-family platform baselines, immutable backports and exact-commit release qualification.
+
+## 26.1.0-rc2
+
+This release candidate extends RC1 with a composed application path while preserving native ASP.NET Core and EF Core integration. See [upgrading from RC1](/v/26.1.3-rc3/upgrading) for exact package pins, explicit schema setup and optional adoption. [GitHub releases](https://github.com/Clinimatix/Caravel/releases) and [NuGet](https://www.nuget.org/profiles/Clinimatix) are the canonical distribution locations.
+
+- Added optional Azure Blob storage with application-supplied clients, create-only streaming, conditional reads/deletes, range support and a revision-pinned download recipe. Core and local storage remain Azure-independent; cloud deployment and version retention are separate qualifications.
+
+- Added an optional Bosun Identity application profile with explicit migration/account setup, native provider selection, current workspace access, durable commands and a browser form. Generated application code remains editable; existing Razor/API defaults are preserved.
+- Fixed obsolete browser loader errors clearing newer sessions/drafts, and current access failures being ignored during initial workspace loading.
+
+- Extended the authenticated backend sample with workspace-scoped work items, versioned commands, durable retry receipts, transactional history/outbox, reference-only notices and a browser form for errors and uncertain retries. Includes an explicit additive migration and setup guide; Bosun's basic starters remain unchanged.
+
+## 26.1.0-rc1 - 2026-09-29
+
+The first release candidate brings together the 26.1 application foundation, data layer and services. It replaces the earlier .NET 9 prototype with a modular framework built on .NET 10 and C# 14. The documented scope and APIs are settled for release qualification; stable follows real-application feedback and upgrade validation.
+
+### Application foundation
+
+- Packages for Core, ASP.NET Core integration and the Bosun CLI, using `Clinimatix.Caravel.*` IDs.
+- Service providers with dependency ordering and async boot that finishes before the app accepts requests.
+- Configuration from JSON, `.env`, environment variables and the command line, with concise aliases for common settings.
+- Named and grouped routes that produce ordinary ASP.NET Core endpoints, plus route inspection.
+- HTTP defaults: ProblemDetails error responses, HSTS, antiforgery and authorization middleware.
+- Release builds normalize compiled source paths; package checks reject unmapped local debug paths.
+
+### Clarion data layer
+
+- Scoped `IClarion` sessions over EF Core that work in any .NET host.
+- Opt-in model discovery, automatic timestamps and soft deletes with restore. Restoring respects your other query filters, such as tenant filters.
+- Soft deletes refuse to share a save with hard deletes or child-relationship changes, so nothing is lost silently.
+- Soft deletes keep explicitly changed concurrency tokens, so stale writers are still detected.
+- Model factories and ordered seeders.
+- Tested on SQL Server, PostgreSQL and SQLite.
+
+### Bosun CLI
+
+- `new` with Razor (default) and API starters. The API starter includes request validation, Development-only OpenAPI and a liveness endpoint.
+- `serve`, `dev` (watch the web app and supervise an optional worker), `route:list`, `doctor` and `schema --json`.
+- Data commands: `make:model`, `make:seeder`, `make:factory`, `make:migration`, `migrate`, `migrate:status`, `migrate:rollback`, `migrate:fresh` and `db:seed`. Rollback and fresh require `--force`.
+- Service generators: `make:job`, `make:event` and `make:listener`. Generated handlers throw until implemented and must be registered explicitly.
+- `schema --json` describes each option's type, whether it's required, and how many values it takes.
+
+### Authentication
+
+- `Clinimatix.Caravel.Auth`: ASP.NET Core Identity with secure cookie, lockout, password and security-stamp defaults.
+- Opt-in account endpoints for registration, email confirmation, password recovery, authenticator-app MFA and recovery codes. Pending MFA cookies are bound to the account security stamp; sensitive MFA changes require reauthentication.
+- `Clinimatix.Caravel.Auth.Windows`: Windows (Negotiate) authentication with an authenticated-by-default fallback policy.
+- Guides and samples for OpenID Connect sign-in and bearer-token APIs, including checking a caller's current access on each request.
+
+### Application services
+
+- `Clinimatix.Caravel.Events`: ordered, scoped in-process events with a recording test fake.
+- `Clinimatix.Caravel.Mail`: SMTP with required TLS by default, text/HTML templates, attachments, development capture and queued delivery.
+- `Clinimatix.Caravel.Notifications`: replaceable mail and SMS channels, independent queued delivery, SMS capture and an optional Twilio HTTPS adapter.
+- Bounded automatic lease renewal and an application-context transactional outbox with idempotent relay to the database queue. Applications explicitly add and migrate the outbox model; existing queue tables do not change.
+- `Clinimatix.Caravel.Queues`: durable database jobs with idempotent enqueue, fenced leases, retries with backoff, dead letters, replay, scoped workers, and metrics and tracing through standard .NET diagnostics.
+- `Clinimatix.Caravel.Scheduling`: fixed-interval UTC schedules that enqueue queue jobs, with duplicate-free slots across multiple scheduler instances.
+- `Clinimatix.Caravel.Storage`: named local storage disks with streamed, create-only writes and path validation.
+- Caching guidance using .NET's built-in memory and SQL Server caches.
+
+### Samples
+
+- A data-only Generic Host app using Clarion and SQLite.
+- A queue worker that recovers cleanly from a crash without double-counting.
+- An authenticated backend combining Identity, Clarion, events and queues: durable ingestion, owner-scoped reports, rate limits, health checks and account session management.
+- An OpenID Connect administrator sign-in app.
+
+### Breaking changes from the prototype
+
+- The .NET 9 prototype, the Ardent ORM, the reflection-based controller dispatcher and the old destructive CLI commands have been removed.
+- The command is now `caravel`. The old `bosun` command and unprefixed package IDs no longer work.
+- There's no automated migration from the prototype.
+
+### Known limitations
+
+- All 12 RC1 packages are available on [nuget.org](https://www.nuget.org/profiles/Clinimatix), with GitHub release ZIPs retained for local-feed use; see [installation instructions](/v/26.1.3-rc3/release-policy#using-prerelease-packages).
+- Not yet included: passkeys, finished account-management screens, calendar/time-zone scheduling, cloud storage drivers, additional notification providers, a Caravel cache API, and the AI/MCP packages. See the [roadmap](/v/26.1.3-rc3/roadmap).
+- SMTP and SMS adapters have automated protocol tests; provider acceptance does not guarantee recipient delivery. Configure and verify your chosen delivery service before use. SMS delivery is not SMS MFA.
+- MariaDB is waiting on an EF Core 10-compatible provider.
+- Linux and macOS storage requires a filesystem that supports hard links.
