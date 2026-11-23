@@ -1,0 +1,96 @@
+---
+title: "Bosun installer"
+statusCorrection: fdf4c4b069054fdd60eaf475aa18757cbae20ad9
+sourcePath: docs/INSTALLER.md
+---
+
+# Install Bosun with PowerShell
+
+The standalone PowerShell 7 installer for Bosun is available at
+`https://caravel.clinimatix.com/install.ps1`. It installs the reviewed prerelease from an
+embedded catalog of immutable release ZIP checksums and source commits. It does not install
+application libraries, provision a runtime, create a database or install frontend tools.
+
+Inspect the [installer source](https://github.com/Clinimatix/Caravel/blob/fdf4c4b069054fdd60eaf475aa18757cbae20ad9/scripts/install.ps1) and verify the digest below before
+executing it. Existing applications need their own dependency, recovery-handler and
+deployed-runtime updates; see [security maintenance](/v/26.1.3-rc3/dependency-maintenance).
+
+## Choose and inspect
+
+Require an existing stable .NET 10 SDK selected in the current directory and PowerShell 7.
+Follow the [serviced runtime policy](/v/26.1.3-rc3/dependency-maintenance) for security updates. Run as
+your ordinary user. The installer never elevates, changes execution policy, installs an SDK,
+changes PATH or changes persistent NuGet configuration. If your policy blocks scripts,
+follow your organization's approved signing/execution process; do not bypass it.
+
+Download the script and compare its SHA-256 to the digest in the
+reviewed website source/release record **before executing it**. A checksum downloaded from
+the same endpoint alone provides no independent authenticity assurance.
+
+```powershell
+Invoke-WebRequest https://caravel.clinimatix.com/install.ps1 -OutFile ./caravel-install.ps1
+Get-FileHash ./caravel-install.ps1 -Algorithm SHA256
+Get-Content ./caravel-install.ps1
+# After verifying the digest and inspecting the script:
+./caravel-install.ps1 -Channel prerelease
+```
+
+The shorter execution line, once the local script is verified, is:
+
+```powershell
+./caravel-install.ps1 -Version 26.1.3-rc3
+```
+
+Avoid piping an unverified download into `Invoke-Expression`. The script's embedded catalog
+pins immutable release ZIP SHA-256 values and source commits. It downloads only from the
+Caravel GitHub releases path, checks the archive checksum, then validates Bosun's package
+ID, exact version, repository URL and source commit. It never downloads another script.
+NuGet resolves third-party dependencies from nuget.org using normal NuGet validation;
+Caravel packages are mapped exclusively to the verified local feed with an isolated cache.
+
+The archive must contain exactly one Bosun package at its expected top-level path. Nested,
+duplicate or differently cased package entries are rejected. Only that entry is copied;
+other archive paths are never extracted. Its single package manifest must parse without
+DTDs and match the pinned identity and source. Offline fixtures cover these rejection
+boundaries and transport retry orchestration with a fake HTTP boundary, without executing
+package payloads.
+
+Once this exact script is published and its digest confirmed against reviewed source, the
+download, verification and invocation can also be written as one line:
+
+```powershell
+$p = Join-Path ([IO.Path]::GetTempPath()) (([guid]::NewGuid().ToString('N')) + '.ps1'); Invoke-WebRequest https://caravel.clinimatix.com/install.ps1 -OutFile $p; if ((Get-FileHash $p -Algorithm SHA256).Hash -ne '9b1b1d561181888435f1064c59b9264437d325f6001c1597575ff36726e88647') { throw 'Installer checksum mismatch' }; & $p -Channel prerelease
+```
+
+An endpoint update deliberately causes an older digest-pinned command to fail. Review the
+new script/digest rather than removing the verification. Keep or remove the downloaded
+file according to your normal review workflow.
+
+## Channels and repeated calls
+
+The default `-Channel stable` selects the catalog's reviewed stable release. No stable
+release is cataloged yet, so it stops with guidance instead of silently installing an RC.
+`-Channel prerelease` currently selects `26.1.3-rc3`. `-Version` overrides the channel and
+must match an exact catalog entry. The earlier `26.1.1-rc2` entry remains available for explicit pins and rollback. Unsupported versions fail before download. Channel
+advancement requires a reviewed catalog update after immutable release qualification;
+this change does not publish or invent RC3 packages.
+
+The default destination is `$HOME/.caravel/tools/<version>`; `-InstallRoot <directory>`
+selects another writable root. Invoke the printed full path, for example:
+
+```powershell
+& "$HOME/.caravel/tools/26.1.3-rc3/caravel" version
+& "$HOME/.caravel/tools/26.1.3-rc3/caravel" new MyApp
+```
+
+Earlier version directories remain available for rollback. Repeating the same version
+checks its receipt, command file and `dotnet tool list`, then returns without download or reinstall.
+Unknown or inconsistent existing directories are preserved and rejected; inspect them or
+choose a different root. A receipt is local state, not a tamper-proof attestation.
+
+Downloads receive at most three attempts. Integrity and provenance failures stop before
+installation. Tool installation runs once; failure removes only the newly created version
+directory and temporary files, restores the process cache setting and propagates the error.
+Retry deliberately after fixing the reported problem. An abrupt process termination may
+leave an incomplete directory; inspect it and choose a fresh root rather than overwriting
+unknown contents. User/project feeds, dependency locks and earlier installations are untouched.
