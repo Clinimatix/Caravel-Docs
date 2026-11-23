@@ -5,7 +5,7 @@ sourcePath: docs/NEXT-RELEASE.md
 
 # Next candidate and first stable release
 
-The next proposed candidate is **26.1.2-rc3**, followed by the first stable **26.1.2**.
+The next candidate is **26.1.3-rc3**, with **26.1.3** as the minimum first stable version.
 These are planning targets, not published versions. Before release, check the highest
 published 26.1 patch: if maintenance advances it, carry that higher numeric floor into RC3
 and stable. Never replace published packages or move tags. See [release policy](/v/dev/release-policy).
@@ -85,7 +85,7 @@ An opt-in [in-process application tool registry](/v/dev/fathom-tools) is in deve
 ahead of the network transport. The candidate includes its in-process contracts; network
 MCP remains later work. Qualify a synthetic consumer, trusted principal binding, resource-level
 denial, cancellation and safe error presentation before adding a transport.
-The compiled [application-policy example](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/samples/FathomPolicy/README.md) covers trusted
+The compiled [application-policy example](https://github.com/Clinimatix/Caravel/blob/fdf4c4b069054fdd60eaf475aa18757cbae20ad9/samples/FathomPolicy/README.md) covers trusted
 scope binding, forged tenant/resource denial, separate read/write grants, permission
 revocation between calls, concurrent scope isolation and safe application errors.
 Core's service-package consumer suite exercises this same example; run it against

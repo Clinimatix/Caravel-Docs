@@ -105,7 +105,7 @@ app.MapPost("/api/greetings", (GreetingRequest request) => new { message = $"Hel
 public sealed record GreetingRequest([property: Required, StringLength(100, MinimumLength = 2)] string Name);
 ```
 
-The [sample app](https://github.com/Clinimatix/Caravel/blob/51f43257cac2d6a7e0ceb2aa1c6f5c3eb33eb893/samples/Caravel.App/Program.cs) shows this working end to end.
+The [sample app](https://github.com/Clinimatix/Caravel/blob/fdf4c4b069054fdd60eaf475aa18757cbae20ad9/samples/Caravel.App/Program.cs) shows this working end to end.
 
 ## HTTP defaults
 
